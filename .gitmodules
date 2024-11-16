@@ -1,0 +1,3 @@
+[submodule "odpic-sys/odpi"]
+	path = odpic-sys/odpi
+	url = https://github.com/oracle/odpi.git
