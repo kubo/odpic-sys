@@ -8,7 +8,7 @@ Put this in your `Cargo.toml`:
 
 ```text
 [dependencies]
-odpic-sys = "0.1.0"
+odpic-sys = "0.1.1"
 ```
 
 The following Cargo features are supported:
@@ -41,4 +41,4 @@ Same with ODPI-C
 [ODPI-C]: https://oracle.github.io/odpi/
 [ODPI-C Function Round-Trips]: https://odpi-c.readthedocs.io/en/latest/user_guide/round_trips.html
 [ODPI-C version]: https://odpi-c.readthedocs.io/en/latest/releasenotes.html
-[RustTarget]: https://docs.rs/bindgen/latest/bindgen/enum.RustTarget.html
+[RustTarget]: https://docs.rs/bindgen/0.70.1/bindgen/enum.RustTarget.html
