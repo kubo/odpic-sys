@@ -27,6 +27,7 @@ See [`Compile-time Requirements`](https://docs.rs/cc/latest/cc/#compile-time-req
 
 | odpic-sys version | [ODPI-C version] | [RustTarget] |
 |-------|-------|------|
+| 0.1.1 | 5.4.1 | 1.59 |
 | 0.1.0 | 5.4.0 | 1.59 |
 
 ## License

@@ -2,7 +2,7 @@
 
 pub const DPI_MAJOR_VERSION: u32 = 5;
 pub const DPI_MINOR_VERSION: u32 = 4;
-pub const DPI_PATCH_LEVEL: u32 = 0;
+pub const DPI_PATCH_LEVEL: u32 = 1;
 pub const DPI_DEFAULT_FETCH_ARRAY_SIZE: u32 = 100;
 pub const DPI_DEFAULT_PREFETCH_ROWS: u32 = 2;
 pub const DPI_DEFAULT_PING_INTERVAL: u32 = 60;
@@ -3542,7 +3542,7 @@ extern "C" {
         hours: i32,
         minutes: i32,
         seconds: i32,
-        fsceconds: i32,
+        fseconds: i32,
     );
 }
 extern "C" {
