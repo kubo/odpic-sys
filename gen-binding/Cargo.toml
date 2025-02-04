@@ -1,0 +1,12 @@
+[package]
+name = "gen-binding"
+version = "0.0.0"
+edition = "2021"
+authors = ["Kubo Takehiro <kubo@jiubao.org>"]
+publish = false
+
+[dependencies]
+anyhow = "1.0.93"
+bindgen = "0.70.1"
+odpic-sys = { path = "../odpic-sys", features = ["doc"] }
+regex = "1.11.1"

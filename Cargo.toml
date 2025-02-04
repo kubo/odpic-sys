@@ -1,4 +1,4 @@
 [workspace]
-members = ["codegen", "odpic-sys"]
+members = ["gen-binding", "odpic-sys"]
 resolver = "2"
 

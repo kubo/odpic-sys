@@ -1,9 +1,0 @@
-[package]
-name = "codegen"
-version = "0.1.0"
-edition = "2021"
-authors = ["Kubo Takehiro <kubo@jiubao.org>"]
-publish = false
-
-[dependencies]
-bindgen = "0.70.1"

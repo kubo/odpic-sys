@@ -1,6 +1,6 @@
 [package]
 name = "odpic-sys"
-version = "0.1.1"
+version = "0.2.0-dev"
 edition = "2021"
 license = "UPL-1.0/Apache-2.0"
 authors = ["Kubo Takehiro <kubo@jiubao.org>"]
@@ -10,9 +10,17 @@ homepage = "https://github.com/kubo/odpic-sys"
 repository = "https://github.com/kubo/odpic-sys"
 categories = ["database", "external-ffi-bindings"]
 keywords = ["database", "oracle"]
+rust-version = "1.59.0" # This must same with RustTarget passed to bindgen.
 
 [features]
 separate_blocking = []
+
+# used by planned crate
+doc = ["serde", "serde_yaml"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"], optional = true }
+serde_yaml = { version = "0.9", optional = true }
 
 [build-dependencies]
 cc = "1.0"

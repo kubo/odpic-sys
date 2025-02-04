@@ -10,7 +10,7 @@ pub const DPI_DEFAULT_PING_TIMEOUT: u32 = 5000;
 pub const DPI_DEFAULT_STMT_CACHE_SIZE: u32 = 20;
 pub const DPI_DEQ_WAIT_NO_WAIT: u32 = 0;
 pub const DPI_MAX_INT64_PRECISION: u32 = 18;
-pub const DPI_SUCCESS: u32 = 0;
+pub const DPI_SUCCESS: i32 = 0;
 pub const DPI_FAILURE: i32 = -1;
 pub const DPI_DEBUG_LEVEL_UNREPORTED_ERRORS: u32 = 1;
 pub const DPI_DEBUG_LEVEL_REFS: u32 = 2;
@@ -19,325 +19,1224 @@ pub const DPI_DEBUG_LEVEL_ERRORS: u32 = 8;
 pub const DPI_DEBUG_LEVEL_SQL: u32 = 16;
 pub const DPI_DEBUG_LEVEL_MEM: u32 = 32;
 pub const DPI_DEBUG_LEVEL_LOAD_LIB: u32 = 64;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_DEFAULT: u32 = 0;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_SYSDBA: u32 = 2;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_SYSOPER: u32 = 4;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_PRELIM: u32 = 8;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_SYSASM: u32 = 32768;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_SYSBKP: u32 = 131072;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_SYSDGD: u32 = 262144;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_SYSKMT: u32 = 524288;
+
+/// See [`dpiAuthMode`]
 pub const DPI_MODE_AUTH_SYSRAC: u32 = 1048576;
+
+/// See [`dpiConnCloseMode`]
 pub const DPI_MODE_CONN_CLOSE_DEFAULT: u32 = 0;
+
+/// See [`dpiConnCloseMode`]
 pub const DPI_MODE_CONN_CLOSE_DROP: u32 = 1;
+
+/// See [`dpiConnCloseMode`]
 pub const DPI_MODE_CONN_CLOSE_RETAG: u32 = 2;
+
+/// See [`dpiCreateMode`]
 pub const DPI_MODE_CREATE_DEFAULT: u32 = 0;
+
+/// See [`dpiCreateMode`]
 pub const DPI_MODE_CREATE_THREADED: u32 = 1;
+
+/// See [`dpiCreateMode`]
 pub const DPI_MODE_CREATE_EVENTS: u32 = 4;
+
+/// See [`dpiDeqMode`]
 pub const DPI_MODE_DEQ_BROWSE: u32 = 1;
+
+/// See [`dpiDeqMode`]
 pub const DPI_MODE_DEQ_LOCKED: u32 = 2;
+
+/// See [`dpiDeqMode`]
 pub const DPI_MODE_DEQ_REMOVE: u32 = 3;
+
+/// See [`dpiDeqMode`]
 pub const DPI_MODE_DEQ_REMOVE_NO_DATA: u32 = 4;
+
+/// See [`dpiDeqNavigation`]
 pub const DPI_DEQ_NAV_FIRST_MSG: u32 = 1;
+
+/// See [`dpiDeqNavigation`]
 pub const DPI_DEQ_NAV_NEXT_TRANSACTION: u32 = 2;
+
+/// See [`dpiDeqNavigation`]
 pub const DPI_DEQ_NAV_NEXT_MSG: u32 = 3;
+
+/// See [`dpiEventType`]
 pub const DPI_EVENT_NONE: u32 = 0;
+
+/// See [`dpiEventType`]
 pub const DPI_EVENT_STARTUP: u32 = 1;
+
+/// See [`dpiEventType`]
 pub const DPI_EVENT_SHUTDOWN: u32 = 2;
+
+/// See [`dpiEventType`]
 pub const DPI_EVENT_SHUTDOWN_ANY: u32 = 3;
+
+/// See [`dpiEventType`]
 pub const DPI_EVENT_DEREG: u32 = 5;
+
+/// See [`dpiEventType`]
 pub const DPI_EVENT_OBJCHANGE: u32 = 6;
+
+/// See [`dpiEventType`]
 pub const DPI_EVENT_QUERYCHANGE: u32 = 7;
+
+/// See [`dpiEventType`]
 pub const DPI_EVENT_AQ: u32 = 100;
+
+/// See [`dpiJsonOptions`]
 pub const DPI_JSON_OPT_DEFAULT: u32 = 0;
+
+/// See [`dpiJsonOptions`]
 pub const DPI_JSON_OPT_NUMBER_AS_STRING: u32 = 1;
+
+/// See [`dpiJsonOptions`]
 pub const DPI_JSON_OPT_DATE_AS_DOUBLE: u32 = 2;
+
+/// See [`dpiExecMode`]
 pub const DPI_MODE_EXEC_DEFAULT: u32 = 0;
+
+/// See [`dpiExecMode`]
 pub const DPI_MODE_EXEC_DESCRIBE_ONLY: u32 = 16;
+
+/// See [`dpiExecMode`]
 pub const DPI_MODE_EXEC_COMMIT_ON_SUCCESS: u32 = 32;
+
+/// See [`dpiExecMode`]
 pub const DPI_MODE_EXEC_BATCH_ERRORS: u32 = 128;
+
+/// See [`dpiExecMode`]
 pub const DPI_MODE_EXEC_PARSE_ONLY: u32 = 256;
+
+/// See [`dpiExecMode`]
 pub const DPI_MODE_EXEC_ARRAY_DML_ROWCOUNTS: u32 = 1048576;
-pub const DPI_MODE_FETCH_NEXT: u32 = 2;
-pub const DPI_MODE_FETCH_FIRST: u32 = 4;
-pub const DPI_MODE_FETCH_LAST: u32 = 8;
-pub const DPI_MODE_FETCH_PRIOR: u32 = 16;
-pub const DPI_MODE_FETCH_ABSOLUTE: u32 = 32;
-pub const DPI_MODE_FETCH_RELATIVE: u32 = 64;
-pub const DPI_MODE_MSG_PERSISTENT: u32 = 1;
-pub const DPI_MODE_MSG_BUFFERED: u32 = 2;
-pub const DPI_MODE_MSG_PERSISTENT_OR_BUFFERED: u32 = 3;
+
+/// See [`dpiFetchMode`]
+pub const DPI_MODE_FETCH_NEXT: u16 = 2;
+
+/// See [`dpiFetchMode`]
+pub const DPI_MODE_FETCH_FIRST: u16 = 4;
+
+/// See [`dpiFetchMode`]
+pub const DPI_MODE_FETCH_LAST: u16 = 8;
+
+/// See [`dpiFetchMode`]
+pub const DPI_MODE_FETCH_PRIOR: u16 = 16;
+
+/// See [`dpiFetchMode`]
+pub const DPI_MODE_FETCH_ABSOLUTE: u16 = 32;
+
+/// See [`dpiFetchMode`]
+pub const DPI_MODE_FETCH_RELATIVE: u16 = 64;
+
+/// See [`dpiMessageDeliveryMode`]
+pub const DPI_MODE_MSG_PERSISTENT: u16 = 1;
+
+/// See [`dpiMessageDeliveryMode`]
+pub const DPI_MODE_MSG_BUFFERED: u16 = 2;
+
+/// See [`dpiMessageDeliveryMode`]
+pub const DPI_MODE_MSG_PERSISTENT_OR_BUFFERED: u16 = 3;
+
+/// See [`dpiMessageState`]
 pub const DPI_MSG_STATE_READY: u32 = 0;
+
+/// See [`dpiMessageState`]
 pub const DPI_MSG_STATE_WAITING: u32 = 1;
+
+/// See [`dpiMessageState`]
 pub const DPI_MSG_STATE_PROCESSED: u32 = 2;
+
+/// See [`dpiMessageState`]
 pub const DPI_MSG_STATE_EXPIRED: u32 = 3;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_INT64: u32 = 3000;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_UINT64: u32 = 3001;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_FLOAT: u32 = 3002;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_DOUBLE: u32 = 3003;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_BYTES: u32 = 3004;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_TIMESTAMP: u32 = 3005;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_INTERVAL_DS: u32 = 3006;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_INTERVAL_YM: u32 = 3007;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_LOB: u32 = 3008;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_OBJECT: u32 = 3009;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_STMT: u32 = 3010;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_BOOLEAN: u32 = 3011;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_ROWID: u32 = 3012;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_JSON: u32 = 3013;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_JSON_OBJECT: u32 = 3014;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_JSON_ARRAY: u32 = 3015;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_NULL: u32 = 3016;
+
+/// See [`dpiNativeTypeNum`]
 pub const DPI_NATIVE_TYPE_VECTOR: u32 = 3017;
+
+/// See [`dpiOpCode`]
 pub const DPI_OPCODE_ALL_OPS: u32 = 0;
+
+/// See [`dpiOpCode`]
 pub const DPI_OPCODE_ALL_ROWS: u32 = 1;
+
+/// See [`dpiOpCode`]
 pub const DPI_OPCODE_INSERT: u32 = 2;
+
+/// See [`dpiOpCode`]
 pub const DPI_OPCODE_UPDATE: u32 = 4;
+
+/// See [`dpiOpCode`]
 pub const DPI_OPCODE_DELETE: u32 = 8;
+
+/// See [`dpiOpCode`]
 pub const DPI_OPCODE_ALTER: u32 = 16;
+
+/// See [`dpiOpCode`]
 pub const DPI_OPCODE_DROP: u32 = 32;
+
+/// See [`dpiOpCode`]
 pub const DPI_OPCODE_UNKNOWN: u32 = 64;
 pub const DPI_ORACLE_TYPE_NONE: u32 = 2000;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_VARCHAR: u32 = 2001;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_NVARCHAR: u32 = 2002;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_CHAR: u32 = 2003;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_NCHAR: u32 = 2004;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_ROWID: u32 = 2005;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_RAW: u32 = 2006;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_NATIVE_FLOAT: u32 = 2007;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_NATIVE_DOUBLE: u32 = 2008;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_NATIVE_INT: u32 = 2009;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_NUMBER: u32 = 2010;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_DATE: u32 = 2011;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_TIMESTAMP: u32 = 2012;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_TIMESTAMP_TZ: u32 = 2013;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_TIMESTAMP_LTZ: u32 = 2014;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_INTERVAL_DS: u32 = 2015;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_INTERVAL_YM: u32 = 2016;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_CLOB: u32 = 2017;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_NCLOB: u32 = 2018;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_BLOB: u32 = 2019;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_BFILE: u32 = 2020;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_STMT: u32 = 2021;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_BOOLEAN: u32 = 2022;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_OBJECT: u32 = 2023;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_LONG_VARCHAR: u32 = 2024;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_LONG_RAW: u32 = 2025;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_NATIVE_UINT: u32 = 2026;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_JSON: u32 = 2027;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_JSON_OBJECT: u32 = 2028;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_JSON_ARRAY: u32 = 2029;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_UROWID: u32 = 2030;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_LONG_NVARCHAR: u32 = 2031;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_XMLTYPE: u32 = 2032;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_VECTOR: u32 = 2033;
+
+/// See [`dpiOracleTypeNum`]
 pub const DPI_ORACLE_TYPE_JSON_ID: u32 = 2034;
 pub const DPI_ORACLE_TYPE_MAX: u32 = 2035;
+
+/// See [`dpiPoolCloseMode`]
 pub const DPI_MODE_POOL_CLOSE_DEFAULT: u32 = 0;
+
+/// See [`dpiPoolCloseMode`]
 pub const DPI_MODE_POOL_CLOSE_FORCE: u32 = 1;
-pub const DPI_MODE_POOL_GET_WAIT: u32 = 0;
-pub const DPI_MODE_POOL_GET_NOWAIT: u32 = 1;
-pub const DPI_MODE_POOL_GET_FORCEGET: u32 = 2;
-pub const DPI_MODE_POOL_GET_TIMEDWAIT: u32 = 3;
+
+/// See [`dpiPoolGetMode`]
+pub const DPI_MODE_POOL_GET_WAIT: u8 = 0;
+
+/// See [`dpiPoolGetMode`]
+pub const DPI_MODE_POOL_GET_NOWAIT: u8 = 1;
+
+/// See [`dpiPoolGetMode`]
+pub const DPI_MODE_POOL_GET_FORCEGET: u8 = 2;
+
+/// See [`dpiPoolGetMode`]
+pub const DPI_MODE_POOL_GET_TIMEDWAIT: u8 = 3;
+
+/// See [`dpiPurity`]
 pub const DPI_PURITY_DEFAULT: u32 = 0;
+
+/// See [`dpiPurity`]
 pub const DPI_PURITY_NEW: u32 = 1;
+
+/// See [`dpiPurity`]
 pub const DPI_PURITY_SELF: u32 = 2;
+
+/// See [`dpiShutdownMode`]
 pub const DPI_MODE_SHUTDOWN_DEFAULT: u32 = 0;
+
+/// See [`dpiShutdownMode`]
 pub const DPI_MODE_SHUTDOWN_TRANSACTIONAL: u32 = 1;
+
+/// See [`dpiShutdownMode`]
 pub const DPI_MODE_SHUTDOWN_TRANSACTIONAL_LOCAL: u32 = 2;
+
+/// See [`dpiShutdownMode`]
 pub const DPI_MODE_SHUTDOWN_IMMEDIATE: u32 = 3;
+
+/// See [`dpiShutdownMode`]
 pub const DPI_MODE_SHUTDOWN_ABORT: u32 = 4;
+
+/// See [`dpiShutdownMode`]
 pub const DPI_MODE_SHUTDOWN_FINAL: u32 = 5;
+
+/// See [`dpiSodaFlags`]
 pub const DPI_SODA_FLAGS_DEFAULT: u32 = 0;
+
+/// See [`dpiSodaFlags`]
 pub const DPI_SODA_FLAGS_ATOMIC_COMMIT: u32 = 1;
+
+/// See [`dpiSodaFlags`]
 pub const DPI_SODA_FLAGS_CREATE_COLL_MAP: u32 = 2;
+
+/// See [`dpiSodaFlags`]
 pub const DPI_SODA_FLAGS_INDEX_DROP_FORCE: u32 = 4;
+
+/// See [`dpiStartupMode`]
 pub const DPI_MODE_STARTUP_DEFAULT: u32 = 0;
+
+/// See [`dpiStartupMode`]
 pub const DPI_MODE_STARTUP_FORCE: u32 = 1;
+
+/// See [`dpiStartupMode`]
 pub const DPI_MODE_STARTUP_RESTRICT: u32 = 2;
-pub const DPI_SERVER_TYPE_UNKNOWN: u32 = 0;
-pub const DPI_SERVER_TYPE_DEDICATED: u32 = 1;
-pub const DPI_SERVER_TYPE_SHARED: u32 = 2;
-pub const DPI_SERVER_TYPE_POOLED: u32 = 4;
-pub const DPI_STMT_TYPE_UNKNOWN: u32 = 0;
-pub const DPI_STMT_TYPE_SELECT: u32 = 1;
-pub const DPI_STMT_TYPE_UPDATE: u32 = 2;
-pub const DPI_STMT_TYPE_DELETE: u32 = 3;
-pub const DPI_STMT_TYPE_INSERT: u32 = 4;
-pub const DPI_STMT_TYPE_CREATE: u32 = 5;
-pub const DPI_STMT_TYPE_DROP: u32 = 6;
-pub const DPI_STMT_TYPE_ALTER: u32 = 7;
-pub const DPI_STMT_TYPE_BEGIN: u32 = 8;
-pub const DPI_STMT_TYPE_DECLARE: u32 = 9;
-pub const DPI_STMT_TYPE_CALL: u32 = 10;
-pub const DPI_STMT_TYPE_EXPLAIN_PLAN: u32 = 15;
-pub const DPI_STMT_TYPE_MERGE: u32 = 16;
-pub const DPI_STMT_TYPE_ROLLBACK: u32 = 17;
-pub const DPI_STMT_TYPE_COMMIT: u32 = 21;
-pub const DPI_SUBSCR_GROUPING_CLASS_TIME: u32 = 1;
-pub const DPI_SUBSCR_GROUPING_TYPE_SUMMARY: u32 = 1;
-pub const DPI_SUBSCR_GROUPING_TYPE_LAST: u32 = 2;
+
+/// See [`dpiServerType`]
+pub const DPI_SERVER_TYPE_UNKNOWN: u8 = 0;
+
+/// See [`dpiServerType`]
+pub const DPI_SERVER_TYPE_DEDICATED: u8 = 1;
+
+/// See [`dpiServerType`]
+pub const DPI_SERVER_TYPE_SHARED: u8 = 2;
+
+/// See [`dpiServerType`]
+pub const DPI_SERVER_TYPE_POOLED: u8 = 4;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_UNKNOWN: u16 = 0;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_SELECT: u16 = 1;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_UPDATE: u16 = 2;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_DELETE: u16 = 3;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_INSERT: u16 = 4;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_CREATE: u16 = 5;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_DROP: u16 = 6;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_ALTER: u16 = 7;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_BEGIN: u16 = 8;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_DECLARE: u16 = 9;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_CALL: u16 = 10;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_EXPLAIN_PLAN: u16 = 15;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_MERGE: u16 = 16;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_ROLLBACK: u16 = 17;
+
+/// See [`dpiStatementType`]
+pub const DPI_STMT_TYPE_COMMIT: u16 = 21;
+
+/// See [`dpiSubscrGroupingClass`]
+pub const DPI_SUBSCR_GROUPING_CLASS_TIME: u8 = 1;
+
+/// See [`dpiSubscrGroupingType`]
+pub const DPI_SUBSCR_GROUPING_TYPE_SUMMARY: u8 = 1;
+
+/// See [`dpiSubscrGroupingType`]
+pub const DPI_SUBSCR_GROUPING_TYPE_LAST: u8 = 2;
+
+/// See [`dpiSubscrNamespace`]
 pub const DPI_SUBSCR_NAMESPACE_AQ: u32 = 1;
+
+/// See [`dpiSubscrNamespace`]
 pub const DPI_SUBSCR_NAMESPACE_DBCHANGE: u32 = 2;
+
+/// See [`dpiSubscrProtocol`]
 pub const DPI_SUBSCR_PROTO_CALLBACK: u32 = 0;
+
+/// See [`dpiSubscrProtocol`]
 pub const DPI_SUBSCR_PROTO_MAIL: u32 = 1;
+
+/// See [`dpiSubscrProtocol`]
 pub const DPI_SUBSCR_PROTO_PLSQL: u32 = 2;
+
+/// See [`dpiSubscrProtocol`]
 pub const DPI_SUBSCR_PROTO_HTTP: u32 = 3;
+
+/// See [`dpiSubscrQOS`]
 pub const DPI_SUBSCR_QOS_RELIABLE: u32 = 1;
+
+/// See [`dpiSubscrQOS`]
 pub const DPI_SUBSCR_QOS_DEREG_NFY: u32 = 2;
+
+/// See [`dpiSubscrQOS`]
 pub const DPI_SUBSCR_QOS_ROWIDS: u32 = 4;
+
+/// See [`dpiSubscrQOS`]
 pub const DPI_SUBSCR_QOS_QUERY: u32 = 8;
+
+/// See [`dpiSubscrQOS`]
 pub const DPI_SUBSCR_QOS_BEST_EFFORT: u32 = 16;
+
+/// See [`dpiTpcBeginFlags`]
 pub const DPI_TPC_BEGIN_JOIN: u32 = 2;
+
+/// See [`dpiTpcBeginFlags`]
 pub const DPI_TPC_BEGIN_NEW: u32 = 1;
+
+/// See [`dpiTpcBeginFlags`]
 pub const DPI_TPC_BEGIN_PROMOTE: u32 = 8;
+
+/// See [`dpiTpcBeginFlags`]
 pub const DPI_TPC_BEGIN_RESUME: u32 = 4;
+
+/// See [`dpiTpcEndFlags`]
 pub const DPI_TPC_END_NORMAL: u32 = 0;
+
+/// See [`dpiTpcEndFlags`]
 pub const DPI_TPC_END_SUSPEND: u32 = 1048576;
-pub const DPI_VECTOR_FLAGS_FLEXIBLE_DIM: u32 = 1;
-pub const DPI_VECTOR_FORMAT_FLOAT32: u32 = 2;
-pub const DPI_VECTOR_FORMAT_FLOAT64: u32 = 3;
-pub const DPI_VECTOR_FORMAT_INT8: u32 = 4;
-pub const DPI_VECTOR_FORMAT_BINARY: u32 = 5;
+
+/// See [`dpiVectorFlags`]
+pub const DPI_VECTOR_FLAGS_FLEXIBLE_DIM: u8 = 1;
+
+/// See [`dpiVectorFormat`]
+pub const DPI_VECTOR_FORMAT_FLOAT32: u8 = 2;
+
+/// See [`dpiVectorFormat`]
+pub const DPI_VECTOR_FORMAT_FLOAT64: u8 = 3;
+
+/// See [`dpiVectorFormat`]
+pub const DPI_VECTOR_FORMAT_INT8: u8 = 4;
+
+/// See [`dpiVectorFormat`]
+pub const DPI_VECTOR_FORMAT_BINARY: u8 = 5;
+
+/// See [`dpiVisibility`]
 pub const DPI_VISIBILITY_IMMEDIATE: u32 = 1;
+
+/// See [`dpiVisibility`]
 pub const DPI_VISIBILITY_ON_COMMIT: u32 = 2;
+
+/// This enumeration identifies the options that can be used when calling
+/// [`dpiJson_getValue()`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_JSON_OPT_DATE_AS_DOUBLE` | Convert values that are stored as Oracle dates and timestamps in the JSON value into double values (number of milliseconds since January 1, 1970). 
+/// `DPI_JSON_OPT_DEFAULT` | Default value. 
+/// `DPI_JSON_OPT_NUMBER_AS_STRING` | Convert values that are stored as Oracle numbers in the JSON value into strings in order to retain precision. 
+pub type dpiJsonOptions = u32;
+
+/// This enumeration identifies the flags that can be used with SODA functions.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_SODA_FLAGS_ATOMIC_COMMIT` | If the function completes successfully the current transaction is committed. If it does not complete successfully, no changes to the database are made and the existing transaction is left untouched. 
+/// `DPI_SODA_FLAGS_CREATE_COLL_MAP` | Create collection in MAP mode. This mode is only supported in [`dpiSodaDb_createCollection()`]. 
+/// `DPI_SODA_FLAGS_DEFAULT` | Default value. 
+/// `DPI_SODA_FLAGS_INDEX_DROP_FORCE` | Forcibly drop the index. This mode is only supported in [`dpiSodaColl_dropIndex()`]. 
+pub type dpiSodaFlags = u32;
+
+/// This enumeration identifies the mode to use when authorizing connections to the
+/// database.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_AUTH_DEFAULT` | Default value used when creating connections. 
+/// `DPI_MODE_AUTH_PRELIM` | Used together with DPI_MODE_AUTH_SYSDBA or DPI_MODE_AUTH_SYSOPER to authenticate for certain administrative tasks (such as starting up or shutting down the database). 
+/// `DPI_MODE_AUTH_SYSASM` | Authenticates with SYSASM access. The use of this value requires Oracle Client 12.1 or higher. 
+/// `DPI_MODE_AUTH_SYSBKP` | Authenticates with SYSBACKUP access. The use of this value requires Oracle Client 12.1 or higher. 
+/// `DPI_MODE_AUTH_SYSDBA` | Authenticates with SYSDBA access. 
+/// `DPI_MODE_AUTH_SYSDGD` | Authenticates with SYSDG access. The use of this value requires Oracle Client 12.1 or higher. 
+/// `DPI_MODE_AUTH_SYSKMT` | Authenticates with SYSKM access. The use of this value requires Oracle Client 12.1 or higher. 
+/// `DPI_MODE_AUTH_SYSOPER` | Authenticates with SYSOPER access. 
+/// `DPI_MODE_AUTH_SYSRAC` | Authenticates with SYSRAC access. The use of this value requires Oracle Client 12.2 or higher. 
 pub type dpiAuthMode = u32;
+
+/// This enumeration identifies the mode to use when closing connections to the
+/// database.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_CONN_CLOSE_DEFAULT` | Default value used when closing connections. 
+/// `DPI_MODE_CONN_CLOSE_DROP` | Causes the session to be dropped from the session pool instead of simply returned to the pool for future use. 
+/// `DPI_MODE_CONN_CLOSE_RETAG` | Causes the session to be tagged with the tag information given when the connection is closed. A value of NULL for the tag will cause the tag to be cleared. 
 pub type dpiConnCloseMode = u32;
+
+/// This enumeration identifies the mode to use when creating connections to the
+/// database. Note that the OCI objects mode is always enabled.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_CREATE_DEFAULT` | Default value used when creating connections. 
+/// `DPI_MODE_CREATE_EVENTS` | Enables events mode which is required for the use of advanced queuing (AQ) and continuous query notification (CQN). 
+/// `DPI_MODE_CREATE_THREADED` | Enables threaded mode. Internal OCI structures not exposed to the user are protected from concurrent access by multiple threads. Error information is also managed in thread local storage. 
 pub type dpiCreateMode = u32;
+
+/// This enumeration identifies the modes that are possible when dequeuing messages
+/// from a queue.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_DEQ_BROWSE` | Read the message without acquiring a lock on the message (equivalent to a SELECT statement). 
+/// `DPI_MODE_DEQ_LOCKED` | Read the message and obtain a write lock on the message (equivalent to a SELECT FOR UPDATE statement). 
+/// `DPI_MODE_DEQ_REMOVE` | Read the message and update or delete it. This is the default mode. Note that the message may be retained in the queue table based on retention properties. 
+/// `DPI_MODE_DEQ_REMOVE_NO_DATA` | Confirms receipt of the message but does not deliver the actual message content. 
 pub type dpiDeqMode = u32;
+
+/// This enumeration identifies the method used for determining which message is to
+/// be dequeued from a queue.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_DEQ_NAV_FIRST_MSG` | Retrieves the first available message that matches the search criteria. This resets the position to the beginning of the queue. 
+/// `DPI_DEQ_NAV_NEXT_MSG` | Retrieves the next available message that matches the search criteria. This is the default method. 
+/// `DPI_DEQ_NAV_NEXT_TRANSACTION` | Skips the remainder of the current transaction group (if any) and retrieves the first message of the next transaction group. This option can only be used if message grouping is enabled for the queue. 
 pub type dpiDeqNavigation = u32;
+
+/// This enumeration identifies the types of events that can take place. The event
+/// type is part of the messages that are sent to subscriptions.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_EVENT_AQ` | Indicates that a queue has messages available to dequeue. 
+/// `DPI_EVENT_DEREG` | Indicates that a subscription is no longer registered with the database and will no longer generate events. 
+/// `DPI_EVENT_NONE` | Indicates that no event has taken place. 
+/// `DPI_EVENT_OBJCHANGE` | Indicates that an object change has taken place. 
+/// `DPI_EVENT_QUERYCHANGE` | Indicates that a query change has taken place. 
+/// `DPI_EVENT_SHUTDOWN` | Indicates that a database is being shut down. 
+/// `DPI_EVENT_SHUTDOWN_ANY` | Indicates that an instance of Oracle Real Application Clusters (RAC) is being shut down. 
+/// `DPI_EVENT_STARTUP` | Indicates that a database is being started up. 
 pub type dpiEventType = u32;
+
+/// This enumeration identifies the available modes for executing statements
+/// using [`dpiStmt_execute()`] and [`dpiStmt_executeMany()`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_EXEC_ARRAY_DML_ROWCOUNTS` | Enable getting row counts for each DML operation when performing an array DML execution. The actual row counts can be retrieved using the function [`dpiStmt_getRowCounts()`]. 
+/// `DPI_MODE_EXEC_BATCH_ERRORS` | Enable batch error mode. This permits an an array DML operation to succeed even if some of the individual operations fail. The errors can be retrieved using the function [`dpiStmt_getBatchErrors()`]. 
+/// `DPI_MODE_EXEC_COMMIT_ON_SUCCESS` | If execution completes successfully, the current active transaction is committed. 
+/// `DPI_MODE_EXEC_DEFAULT` | Default mode for execution. Metadata is made available after queries are executed. 
+/// `DPI_MODE_EXEC_DESCRIBE_ONLY` | Do not execute the statement but simply acquire the metadata for the query. 
+/// `DPI_MODE_EXEC_PARSE_ONLY` | Do not execute the statement but only parse it and return any parse errors. Note that using this mode with a DDL statement will result in the statement being executed. 
 pub type dpiExecMode = u32;
+
+/// This enumeration identifies the mode to use when scrolling the cursor to a new
+/// location using the function [`dpiStmt_scroll()`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_FETCH_ABSOLUTE` | Scroll the cursor to the row identified by the offset parameter using absolute positioning. 
+/// `DPI_MODE_FETCH_FIRST` | Scroll the cursor to the first row in the result set. The offset is ignored when using this mode. 
+/// `DPI_MODE_FETCH_LAST` | Scroll the cursor to the last row in the result set. The offset is ignored when using this mode. 
+/// `DPI_MODE_FETCH_NEXT` | Scroll the cursor to the next row in the result set. The offset is ignored when using this mode. 
+/// `DPI_MODE_FETCH_PRIOR` | Scroll the cursor to the previous row in the result set. The offset is ignored when using this mode. 
+/// `DPI_MODE_FETCH_RELATIVE` | Scroll the cursor to the row identified by the offset parameter using relative positioning. A positive number will move forward in the result set while a negative number will move backwards in the result set. 
 pub type dpiFetchMode = u16;
+
+/// This enumeration identifies the delivery mode used for filtering messages
+/// when dequeuing messages from a queue.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_MSG_BUFFERED` | Dequeue only buffered messages from the queue. 
+/// `DPI_MODE_MSG_PERSISTENT` | Dequeue only persistent messages from the queue. This is the default mode. 
+/// `DPI_MODE_MSG_PERSISTENT_OR_BUFFERED` | Dequeue both persistent and buffered messages from the queue. 
 pub type dpiMessageDeliveryMode = u16;
+
+/// This enumeration identifies the possible states for messages in a queue.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MSG_STATE_EXPIRED` | The message has been moved to the exception queue. 
+/// `DPI_MSG_STATE_PROCESSED` | The message has already been processed and is retained. 
+/// `DPI_MSG_STATE_READY` | The message is ready to be processed. 
+/// `DPI_MSG_STATE_WAITING` | The message is waiting for the delay time to expire. 
 pub type dpiMessageState = u32;
+
+/// This enumeration identifies the type of data that is being transferred to and
+/// from the database. It is used in the structures
+/// [`dpiDataTypeInfo`],
+/// [`dpiShardingKeyColumn`] and
+/// [`dpiJsonNode`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_NATIVE_TYPE_BOOLEAN` | Data is passed as a boolean value in [`dpiDataBuffer.asBoolean`]. 
+/// `DPI_NATIVE_TYPE_BYTES` | Data is passed as a byte string in [`dpiDataBuffer.asBytes`]. 
+/// `DPI_NATIVE_TYPE_DOUBLE` | Data is passed as a double precision floating point number in [`dpiDataBuffer.asDouble`]. 
+/// `DPI_NATIVE_TYPE_FLOAT` | Data is passed as a single precision floating point number in [`dpiDataBuffer.asFloat`]. 
+/// `DPI_NATIVE_TYPE_INT64` | Data is passed as a 64-bit integer in [`dpiDataBuffer.asInt64`]. 
+/// `DPI_NATIVE_TYPE_INTERVAL_DS` | Data is passed as an interval (days to seconds) in [`dpiDataBuffer.asIntervalDS`]. 
+/// `DPI_NATIVE_TYPE_INTERVAL_YM` | Data is passed as an interval (years to months) in [`dpiDataBuffer.asIntervalYM`]. 
+/// `DPI_NATIVE_TYPE_JSON` | Data is passed as a JSON node in `dpiDataBuffer.asJsonNode`. 
+/// `DPI_NATIVE_TYPE_JSON_ARRAY` | Data is passed as a JSON array in [`dpiDataBuffer.asJsonArray`]. 
+/// `DPI_NATIVE_TYPE_JSON_OBJECT` | Data is passed as a JSON object in [`dpiDataBuffer.asJsonObject`]. 
+/// `DPI_NATIVE_TYPE_LOB` | Data is passed as a reference to a LOB in [`dpiDataBuffer.asLOB`]. 
+/// `DPI_NATIVE_TYPE_NULL` | No data is being passed. This is used to identify the JSON singleton null value. 
+/// `DPI_NATIVE_TYPE_OBJECT` | Data is passed as a reference to an object in [`dpiDataBuffer.asObject`]. 
+/// `DPI_NATIVE_TYPE_ROWID` | Data is passed as a reference to a rowid in [`dpiDataBuffer.asRowid`]. 
+/// `DPI_NATIVE_TYPE_STMT` | Data is passed as a reference to a statement in [`dpiDataBuffer.asStmt`]. 
+/// `DPI_NATIVE_TYPE_TIMESTAMP` | Data is passed as a timestamp in [`dpiDataBuffer.asTimestamp`]. 
+/// `DPI_NATIVE_TYPE_UINT64` | Data is passed as an unsigned 64-bit integer in [`dpiDataBuffer.asUint64`]. 
+/// `DPI_NATIVE_TYPE_VECTOR` | Data is passed as a reference to a vector in [`dpiDataBuffer.asVector`]. 
 pub type dpiNativeTypeNum = u32;
+
+/// This enumeration identifies the types of operations that can take place during
+/// object change and query change notification. It is used both as a filter when
+/// determining which operations to consider when sending notifications as well as
+/// identifying the operation that took place on a particular table or row when a
+/// notification is sent. Multiple values can be OR’ed together to specify multiple
+/// types of operations at the same time.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_OPCODE_ALL_OPS` | Indicates that notifications should be sent for all operations on the table or query. 
+/// `DPI_OPCODE_ALL_ROWS` | Indicates that all rows have been changed in the table or query (or too many rows were changed or row information was not requested). 
+/// `DPI_OPCODE_ALTER` | Indicates that the registered table or query has been altered. 
+/// `DPI_OPCODE_DELETE` | Indicates that a delete operation has taken place in the table or query. 
+/// `DPI_OPCODE_DROP` | Indicates that the registered table or query has been dropped. 
+/// `DPI_OPCODE_INSERT` | Indicates that an insert operation has taken place in the table or query. 
+/// `DPI_OPCODE_UPDATE` | Indicates that an update operation has taken place in the table or query. 
+/// `DPI_OPCODE_UNKNOWN` | An unknown operation has taken place. 
 pub type dpiOpCode = u32;
+
+/// This enumeration identifies the types of Oracle data that can be used for
+/// binding data as arguments to a statement, fetching data from the database, or
+/// getting and setting object attributes and element values.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_ORACLE_TYPE_BFILE` | Default type used for BFILE columns in the database. Only a locator is transferred to/from Oracle, which can subsequently be used via dpiLob references to read/write from that locator. 
+/// `DPI_ORACLE_TYPE_BLOB` | Default type used for BLOB columns in the database. Only a locator is transferred to/from Oracle, which can subsequently be used via dpiLob references to read/write from that locator. 
+/// `DPI_ORACLE_TYPE_BOOLEAN` | Used within PL/SQL for boolean values. This is only available in 12.1. Earlier releases simply use the integer values 0 and 1 to represent a boolean value. Data is transferred to/from Oracle as an integer. 
+/// `DPI_ORACLE_TYPE_CHAR` | Default type used for CHAR columns in the database. Data is transferred to/from Oracle as byte strings in the encoding used for CHAR data. 
+/// `DPI_ORACLE_TYPE_CLOB` | Default type used for CLOB columns in the database. Only a locator is transferred to/from Oracle, which can subsequently be used via dpiLob references to read/write from that locator. 
+/// `DPI_ORACLE_TYPE_DATE` | Default type used for DATE columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_INTERVAL_DS` | Default type used for INTERVAL DAY TO SECOND columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_INTERVAL_YM` | Default type used for INTERVAL YEAR TO MONTH columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_JSON` | Default type used for JSON columns in the database (available in Oracle Database 20 and higher). Data is transferred to/from Oracle using the structure [`dpiJsonNode`]. 
+/// `DPI_ORACLE_TYPE_JSON_ARRAY` | Type used for identifying nodes that are JSON arrays. Data is transferred to/from Oracle using the structure [`dpiJsonArray`]. 
+/// `DPI_ORACLE_TYPE_JSON_ID` | Type used for identifying nodes that are JSON IDs. Data is transferred to/from Oracle as raw byte strings. 
+/// `DPI_ORACLE_TYPE_JSON_OBJECT` | Type used for identifying nodes that are JSON objects. Data is transferred to/from Oracle using the structure [`dpiJsonObject`]. 
+/// `DPI_ORACLE_TYPE_LONG_NVARCHAR` | This value cannot be represented in an Oracle database but is used when fetching NCLOB data as a string. Data is transferred to/from Oracle as byte strings in the encoding used for NCHAR data. 
+/// `DPI_ORACLE_TYPE_LONG_RAW` | Default type used for LONG RAW columns in the database. Data is transferred to/from Oracle as raw byte strings. 
+/// `DPI_ORACLE_TYPE_LONG_VARCHAR` | Default type used for LONG columns in the database. Data is transferred to/from Oracle as byte strings in the encoding used for CHAR data. 
+/// `DPI_ORACLE_TYPE_NATIVE_DOUBLE` | Default type used for BINARY_DOUBLE columns in the database. Data is transferred to/from Oracle as the C double type. 
+/// `DPI_ORACLE_TYPE_NATIVE_FLOAT` | Default type used for BINARY_FLOAT columns in the database. Data is transferred to/from Oracle as the C float type. 
+/// `DPI_ORACLE_TYPE_NATIVE_INT` | Type available for binding native integers directly in PL/SQL (such as PLS_INTEGER). Data is transferred to/from Oracle as 64-bit integers. 
+/// `DPI_ORACLE_TYPE_NATIVE_UINT` | Type available for binding native integers directly in PL/SQL (such as PLS_INTEGER). Data is transferred to/from Oracle as 64-bit unsigned integers. 
+/// `DPI_ORACLE_TYPE_NCHAR` | Default type used for NCHAR columns in the database. Data is transferred to/from Oracle as byte strings in the encoding used for NCHAR data. 
+/// `DPI_ORACLE_TYPE_NCLOB` | Default type used for NCLOB columns in the database. Only a locator is transferred to/from Oracle, which can subsequently be used via dpiLob references to read/write from that locator. 
+/// `DPI_ORACLE_TYPE_NUMBER` | Default type used for NUMBER columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_NVARCHAR` | Default type used for NVARCHAR2 columns in the database. Data is transferred to/from Oracle as byte strings in the encoding used for NCHAR data. 
+/// `DPI_ORACLE_TYPE_OBJECT` | Default type used for named type columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_RAW` | Default type used for RAW columns in the database. Data is transferred to/from Oracle as raw byte strings. 
+/// `DPI_ORACLE_TYPE_ROWID` | Default type used for the pseudocolumn “ROWID”. Data is transferred to/from Oracle as byte strings, in the encoding used for CHAR data. 
+/// `DPI_ORACLE_TYPE_STMT` | Used within PL/SQL for REF CURSOR or within SQL for querying a CURSOR. Only a handle is transferred to/from Oracle, which can subsequently be used via dpiStmt for querying. 
+/// `DPI_ORACLE_TYPE_TIMESTAMP` | Default type used for TIMESTAMP columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_TIMESTAMP_LTZ` | Default type used for TIMESTAMP WITH LOCAL TIME ZONE columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_TIMESTAMP_TZ` | Default type used for TIMESTAMP WITH TIME ZONE columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_UROWID` | This value is currently a synonym for DPI_ORACLE_TYPE_ROWID. It is intended to be the default type for UROWID columns in the database when it is possible to distinguish betweeen ROWID and UROWID. Data is transferred to/from Oracle as byte strings, in the encoding used for CHAR data. 
+/// `DPI_ORACLE_TYPE_VARCHAR` | Default type used for VARCHAR2 columns in the database. Data is transferred to/from Oracle as byte strings in the encoding used for CHAR data. 
+/// `DPI_ORACLE_TYPE_VECTOR` | Default type used for VECTOR columns in the database. Data is transferred to/from Oracle in Oracle’s internal format. 
+/// `DPI_ORACLE_TYPE_XMLTYPE` | Default type used for SYS.XMLTYPE columns in the database. Data is transferred to/from Oracle as byte strings in the encoding used for CHAR data. 
 pub type dpiOracleTypeNum = u32;
+
+/// This enumeration identifies the mode to use when closing pools.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_POOL_CLOSE_DEFAULT` | Default value used when closing pools. If there are any active sessions in the pool an error will be raised. 
+/// `DPI_MODE_POOL_CLOSE_FORCE` | Causes all of the active connections in the pool to be closed before closing the pool itself. 
 pub type dpiPoolCloseMode = u32;
+
+/// This enumeration identifies the mode to use when getting sessions from a
+/// session pool.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_POOL_GET_FORCEGET` | Specifies that a new session should be created if all of the sessions in the pool are busy, even if this exceeds the maximum sessions allowable for the session pool (see [`dpiPoolCreateParams.maxSessions`]). 
+/// `DPI_MODE_POOL_GET_NOWAIT` | Specifies that the caller should return immediately, regardless of whether a session is available in the pool. If a session is not available an error is returned. 
+/// `DPI_MODE_POOL_GET_TIMEDWAIT` | Specifies that the caller should block until a session is available from the pool, but only for the specified length of time defined in [`dpiPoolCreateParams.waitTimeout`]. If a session is not available within the specified period of time an error is returned. 
+/// `DPI_MODE_POOL_GET_WAIT` | Specifies that the caller should block until a session is available from the pool. 
 pub type dpiPoolGetMode = u8;
+
+/// This enumeration identifies the purity of the sessions that are acquired when
+/// using connection classes during connection creation.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_PURITY_DEFAULT` | Default value used when creating connections. 
+/// `DPI_PURITY_NEW` | A connection is required that has not been tainted with any prior session state. 
+/// `DPI_PURITY_SELF` | A connection is permitted to have prior session state. 
 pub type dpiPurity = u32;
+
+/// This enumeration identifies the mode to use when shutting down a database
+/// using [`dpiConn_shutdownDatabase()`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_SHUTDOWN_ABORT` | All uncommitted transactions are terminated and are not rolled back. This is the fastest way to shut down the database but the next database startup may require instance recovery. 
+/// `DPI_MODE_SHUTDOWN_DEFAULT` | Further connections to the database are prohibited. Wait for users to disconnect from the database. 
+/// `DPI_MODE_SHUTDOWN_FINAL` | Shuts down the database. This mode should only be used in the second call to [`dpiConn_shutdownDatabase()`]. 
+/// `DPI_MODE_SHUTDOWN_IMMEDIATE` | All uncommitted transactions are terminated and rolled back and all connections to the database are closed immediately. 
+/// `DPI_MODE_SHUTDOWN_TRANSACTIONAL` | Further connections to the database are prohibited and no new transactions are allowed to be started. Wait for active transactions to complete. 
+/// `DPI_MODE_SHUTDOWN_TRANSACTIONAL_LOCAL` | Behaves the same way as DPI_MODE_SHUTDOWN_TRANSACTIONAL but only waits for local transactions to complete. 
 pub type dpiShutdownMode = u32;
+
+/// This enumeration identifies the mode to use when starting up a database using
+/// [`dpiConn_startupDatabase()`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_MODE_STARTUP_DEFAULT` | Default mode for startup which permits database access to all users. 
+/// `DPI_MODE_STARTUP_FORCE` | Shuts down a running instance (using ABORT) before starting a new one. This mode should only be used in unusual circumstances. 
+/// `DPI_MODE_STARTUP_RESTRICT` | Only allows database access to users with both the CREATE SESSION and RESTRICTED SESSION privileges (normally the DBA). 
 pub type dpiStartupMode = u32;
+
+/// This enumeration identifies the type of server process associated with a
+/// connection. It is only available with Oracle Client libraries 23.4 or higher.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_SERVER_TYPE_DEDICATED` | A dedicated server process is being used with the connection. 
+/// `DPI_SERVER_TYPE_POOLED` | A pooled server process (DRCP) is being used with the connection. 
+/// `DPI_SERVER_TYPE_SHARED` | A shared server process is being used with the connection. 
+/// `DPI_SERVER_TYPE_UNKNOWN` | The type of server process is unknown. 
 pub type dpiServerType = u8;
+
+/// This enumeration identifies the type of statement that has been prepared. It is
+/// available as part of the structure [`dpiStmtInfo`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_STMT_TYPE_ALTER` | Identifies an alter statement. The member [`dpiStmtInfo.isDDL`] will be set to 1. 
+/// `DPI_STMT_TYPE_BEGIN` | Identifies an anonymous PL/SQL block starting with the keyword begin. The member [`dpiStmtInfo.isPLSQL`] will be set to 1. 
+/// `DPI_STMT_TYPE_CALL` | Identifies a CALL statement used for calling stored procedures and functions. The member [`dpiStmtInfo.isPLSQL`] will be set to 1. 
+/// `DPI_STMT_TYPE_COMMIT` | Identifies a commit statement. 
+/// `DPI_STMT_TYPE_CREATE` | Identifies a create statement. The member [`dpiStmtInfo.isDDL`] will be set to 1. 
+/// `DPI_STMT_TYPE_DECLARE` | Identifies an anonymous PL/SQL block starting with the keyword declare. The member [`dpiStmtInfo.isPLSQL`] will be set to 1. 
+/// `DPI_STMT_TYPE_DELETE` | Identifies a delete statement. The member [`dpiStmtInfo.isDML`] will be set to 1. 
+/// `DPI_STMT_TYPE_DROP` | Identifies a drop statement. The member [`dpiStmtInfo.isDDL`] will be set to 1. 
+/// `DPI_STMT_TYPE_EXPLAIN_PLAN` | Identifies an explain plan statement. The member [`dpiStmtInfo.isDML`] will be set to 1. 
+/// `DPI_STMT_TYPE_INSERT` | Identifies an insert statement. The member [`dpiStmtInfo.isDML`] will be set to 1. 
+/// `DPI_STMT_TYPE_MERGE` | Identifies a merge statement. The member [`dpiStmtInfo.isDML`] will be set to 1. 
+/// `DPI_STMT_TYPE_ROLLBACK` | Identifies a rollback statement. 
+/// `DPI_STMT_TYPE_SELECT` | Identifies a select statement. The member [`dpiStmtInfo.isQuery`] will be set to 1. 
+/// `DPI_STMT_TYPE_UPDATE` | Identifies an update statement. The member [`dpiStmtInfo.isDML`] will be set to 1. 
+/// `DPI_STMT_TYPE_UNKNOWN` | Indicates that the statement type is unknown. 
 pub type dpiStatementType = u16;
+
+/// This enumeration identifies the grouping class. Instead of individual events
+/// being delivered to the callback, events are grouped before being sent to the
+/// callback. This enumeration is used in the
+/// [`dpiSubscrCreateParams`] structure.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_SUBSCR_GROUPING_CLASS_TIME` | Events are grouped by the period of time in which they are received. 
 pub type dpiSubscrGroupingClass = u8;
+
+/// This enumeration identifies the grouping type. It is used in the
+/// [`dpiSubscrCreateParams`] structure.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_SUBSCR_GROUPING_TYPE_LAST` | The last event in the group is sent. 
+/// `DPI_SUBSCR_GROUPING_TYPE_SUMMARY` | A summary of all events in the group is sent. This is also the default value. 
 pub type dpiSubscrGroupingType = u8;
+
+/// This enumeration identifies the namespaces supported by subscriptions.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_SUBSCR_NAMESPACE_AQ` | Identifies the namespace used for receiving notifications when messages are available to be dequeued in advanced queueing (AQ). 
+/// `DPI_SUBSCR_NAMESPACE_DBCHANGE` | Identifies the namespace used for receiving notifications for database object changes and query changes (CQN). 
 pub type dpiSubscrNamespace = u32;
+
+/// This enumeration identifies the protocol used for sending notifications to
+/// subscriptions.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_SUBSCR_PROTO_CALLBACK` | Notifications are sent by calling the callback specified when the subscription was registered. 
+/// `DPI_SUBSCR_PROTO_HTTP` | Notifications are sent to the URL specified when the subscription was registered. 
+/// `DPI_SUBSCR_PROTO_MAIL` | Notifications are sent by sending an e-mail to the e-mail address specified when the subscription was registered. 
+/// `DPI_SUBSCR_PROTO_PLSQL` | Notifications are sent by calling the PL/SQL procedure specified when the subscription was registered. 
 pub type dpiSubscrProtocol = u32;
+
+/// This enumeration identifies the quality of service flags for sending
+/// notifications to subscriptions.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_SUBSCR_QOS_BEST_EFFORT` | Perform query notification in best effort mode which may result in notifications being sent when the query has not in fact changed. This is needed for complex queries that cannot be registered in guaranteed mode. 
+/// `DPI_SUBSCR_QOS_DEREG_NFY` | When the notification has been received, the subscription is removed. 
+/// `DPI_SUBSCR_QOS_QUERY` | Perform query notification instead of database change notification. Notification is done in guaranteed mode which guarantees that the query has in fact changed. 
+/// `DPI_SUBSCR_QOS_RELIABLE` | Notifications are sent reliably. If the database fails, the notifications are not lost. This is not supported for nonpersistent queues or buffered messaging. 
+/// `DPI_SUBSCR_QOS_ROWIDS` | Information on the rows affected by the database or query change is sent along with the notification. 
 pub type dpiSubscrQOS = u32;
+
+/// This enumeration identifies the flags that can be used when calling
+/// [`dpiConn_tpcBegin()`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_TPC_BEGIN_JOIN` | Joins an existing global transaction. 
+/// `DPI_TPC_BEGIN_NEW` | Creates a new global transaction. 
+/// `DPI_TPC_BEGIN_PROMOTE` | Promotes a local transaction to a global transaction. 
+/// `DPI_TPC_BEGIN_RESUME` | Resumes an existing global transaction. 
 pub type dpiTpcBeginFlags = u32;
+
+/// This enumeration identifies the flags that can be used when calling
+/// [`dpiConn_tpcEnd()`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_TPC_END_NORMAL` | Normal ending of the transaction. 
+/// `DPI_TPC_END_SUSPEND` | Transaction is suspended and may be resumed at some later point. 
 pub type dpiTpcEndFlags = u32;
+
+/// This enumeration identifies the possible values for
+/// [`dpiDataTypeInfo.vectorFlags`].
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_VECTOR_FLAGS_FLEXIBLE_DIM` | The vector column uses a flexible number of dimensions. 
 pub type dpiVectorFlags = u8;
+
+/// This enumeration identifies the storage format for a vector’s dimensions.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_VECTOR_FORMAT_BINARY` | The vector dimension storage format is single bits, represented in groups of 8 as single byte unsigned integers. 
+/// `DPI_VECTOR_FORMAT_FLOAT32` | The vector dimension storage format is single-precision floating point numbers. 
+/// `DPI_VECTOR_FORMAT_FLOAT64` | The vector dimension storage format is double-precision floating point numbers. 
+/// `DPI_VECTOR_FORMAT_INT8` | The vector dimension storage format is single byte signed integers. 
 pub type dpiVectorFormat = u8;
+
+/// This enumeration identifies the visibility of messages in advanced queuing.
+/// 
+/// Value | Description
+/// ---|---
+/// `DPI_VISIBILITY_IMMEDIATE` | The message is not part of the current transaction but constitutes a transaction of its own. 
+/// `DPI_VISIBILITY_ON_COMMIT` | The message is part of the current transaction. This is the default value. 
 pub type dpiVisibility = u32;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Connection handles are used to represent connections to the database. These can
+/// be standalone connections created by calling the function
+/// [`dpiConn_create()`] or acquired from a session pool by calling the
+/// function [`dpiPool_acquireConnection()`]. They can be closed by calling the
+/// function [`dpiConn_close()`] or releasing the last reference to the
+/// connection by calling the function [`dpiConn_release()`]. Connection
+/// handles are used to create all handles other than session pools and context
+/// handles.
 pub struct dpiConn {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Context handles are the top level handles created by the library and are used
+/// for all error handling as well as creating pools and standalone connections to
+/// the database. The first call to ODPI-C by any application must be
+/// [`dpiContext_createWithParams()`] which will create the context as well as
+/// validate the version used by the application. Context handles are destroyed by
+/// using the function [`dpiContext_destroy()`].
 pub struct dpiContext {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Dequeue option handles are used to represent the options specified when
+/// dequeuing messages using advanced queueing. They are created by calling the
+/// function [`dpiConn_newDeqOptions()`] and are destroyed by releasing the
+/// last reference by calling the function [`dpiDeqOptions_release()`].
 pub struct dpiDeqOptions {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Enqueue option handles are used to represent the options specified when
+/// enqueuing messages using advanced queueing. They are created by calling the
+/// function [`dpiConn_newEnqOptions()`] and are destroyed by releasing the
+/// last reference by calling the function [`dpiEnqOptions_release()`].
 pub struct dpiEnqOptions {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// JSON handles are used to represent JSON values stored in the database. They are
+/// only available from Oracle Client and Database 20 and higher. They cannot be
+/// created directly but are created implicitly when a variable of type
+/// DPI_ORACLE_TYPE_JSON is created. They are destroyed when the last reference is
+/// released by a call to the function [`dpiJson_release()`].
 pub struct dpiJson {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// LOB handles are used to represent large objects (CLOB, BLOB, NCLOB, BFILE).
+/// Both persistent and temporary large objects can be represented. LOB handles can
+/// be created by calling the function [`dpiConn_newTempLob()`] or are created
+/// implicitly when a variable of type DPI_ORACLE_TYPE_CLOB, DPI_ORACLE_TYPE_NCLOB,
+/// DPI_ORACLE_TYPE_BLOB or DPI_ORACLE_TYPE_BFILE is created and are destroyed when
+/// the last reference is released by calling the function
+/// [`dpiLob_release()`]. They are used for reading and writing data to the
+/// database in smaller pieces than is contained in the large object.
 pub struct dpiLob {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Message properties handles are used to represent the properties of messages
+/// that are enqueued and dequeued using advanced queuing. They are created by
+/// calling the function [`dpiConn_newMsgProps()`] and are destroyed by
+/// releasing the last reference by calling the function
+/// [`dpiMsgProps_release()`].
 pub struct dpiMsgProps {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Object handles are used to represent instances of the types created by the SQL
+/// command CREATE OR REPLACE TYPE. They are created by calling the function
+/// [`dpiObjectType_createObject()`] or calling the function
+/// [`dpiObject_copy()`] or implicitly by creating a variable of the type
+/// DPI_ORACLE_TYPE_OBJECT. The are destroyed when the last reference is released
+/// by calling the function [`dpiObject_release()`].
 pub struct dpiObject {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Object attribute handles are used to represent the attributes of types such as
+/// those created by the SQL command CREATE OR REPLACE TYPE. They are created by
+/// calling the function [`dpiObjectType_getAttributes()`] and are destroyed
+/// when the last reference is released by calling the function
+/// [`dpiObjectAttr_release()`].
 pub struct dpiObjectAttr {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Object type handles are used to represent types such as those created by the
+/// SQL command CREATE OR REPLACE TYPE. They are created using the function
+/// [`dpiConn_getObjectType()`] or implicitly when fetching from a column
+/// containing objects by calling the function [`dpiStmt_getQueryInfo()`].
+/// Object types are also retrieved when used as attributes in
+/// another object by calling the function [`dpiObjectAttr_getInfo()`] or as
+/// the element type of a collection by calling the function
+/// [`dpiObjectType_getInfo()`]. They are destroyed when the last reference is
+/// released by calling the function [`dpiObjectType_release()`].
 pub struct dpiObjectType {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Pool handles are used to represent session pools. They are created using the
+/// function [`dpiPool_create()`] and can be closed by calling the function
+/// [`dpiPool_close()`] or releasing the last reference to the pool by
+/// calling the function [`dpiPool_release()`]. Pools can be used to create
+/// connections by calling the function [`dpiPool_acquireConnection()`].
 pub struct dpiPool {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Queue handles are used to represent Advanced Queueing (AQ) queues. They are
+/// created by calling the function [`dpiConn_newQueue()`] and are destroyed
+/// when the last reference is released by calling the function
+/// [`dpiQueue_release()`].
 pub struct dpiQueue {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Rowid handles are used to represent the unique identifier of a row in the
+/// database. They cannot be created or set directly but are created implicitly
+/// when a variable of type DPI_ORACLE_TYPE_ROWID is created. They are destroyed
+/// when the last reference is released by a call to the function
+/// [`dpiRowid_release()`].
 pub struct dpiRowid {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// SODA collection handles are used to represent SODA collections in the database.
+/// They are created by calling one of the functions
+/// [`dpiSodaDb_createCollection()`], [`dpiSodaDb_openCollection()`] or
+/// [`dpiSodaCollCursor_getNext()`] and are destroyed when the last reference
+/// is released by calling the function [`dpiSodaColl_release()`].
+/// 
+/// See [this tracking issue](https://github.com/oracle/odpi/issues/110) for
+/// known issues with SODA.
 pub struct dpiSodaColl {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// SODA collection cursor handles are used to represent SODA collection cursors.
+/// They are created by calling the function [`dpiSodaDb_getCollections()`]
+/// and are destroyed when the last reference is released by calling the function
+/// [`dpiSodaCollCursor_release()`].
+/// 
+/// See [this tracking issue](https://github.com/oracle/odpi/issues/110) for
+/// known issues with SODA.
 pub struct dpiSodaCollCursor {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// SODA database handles are used to represent connections to the SODA database.
+/// They are created by calling the function [`dpiConn_getSodaDb()`]. They are
+/// destroyed when the last reference is released by calling
+/// [`dpiSodaDb_release()`].
+/// 
+/// See [this tracking issue](https://github.com/oracle/odpi/issues/110) for
+/// known issues with SODA.
 pub struct dpiSodaDb {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// SODA document handles are used to represent SODA documents in the database.
+/// They are created by calling one of the functions
+/// [`dpiSodaDb_createDocument()`], [`dpiSodaDocCursor_getNext()`],
+/// [`dpiSodaColl_findOne()`], [`dpiSodaColl_getDataGuide()`],
+/// [`dpiSodaColl_insertMany()`], [`dpiSodaColl_insertOne()`],
+/// [`dpiSodaColl_replaceOne()`] or [`dpiSodaColl_save()`] and
+/// are destroyed when the last reference is released by calling the function
+/// [`dpiSodaDoc_release()`].
+/// 
+/// See [this tracking issue](https://github.com/oracle/odpi/issues/110) for
+/// known issues with SODA.
 pub struct dpiSodaDoc {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// SODA document cursor handles are used to represent SODA document cursors.
+/// They are created by calling the function [`dpiSodaColl_find()`]
+/// and are destroyed when the last reference is released by calling the function
+/// [`dpiSodaDocCursor_release()`].
+/// 
+/// See [this tracking issue](https://github.com/oracle/odpi/issues/110) for
+/// known issues with SODA.
 pub struct dpiSodaDocCursor {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Statement handles are used to represent statements of all types (queries, DML,
+/// DDL and PL/SQL). They are created by calling the function
+/// [`dpiConn_prepareStmt()`] or the function [`dpiSubscr_prepareStmt()`].
+/// They are also created implicitly when a variable of type DPI_ORACLE_TYPE_STMT
+/// is created. Statement handles can be closed by calling the function
+/// [`dpiStmt_close()`] or by releasing the last reference to the statement by
+/// calling the function [`dpiStmt_release()`].
 pub struct dpiStmt {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Subscription handles are used to represent subscriptions to events such as
+/// continuous query notification and object change notification. They are created
+/// by calling the function [`dpiConn_subscribe()`] and are destroyed
+/// by calling the function [`dpiConn_unsubscribe()`] or releasing the last
+/// reference by calling the function [`dpiSubscr_release()`].
 pub struct dpiSubscr {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Variable handles are used to represent memory areas used for transferring data
+/// to and from the database. They are created by calling the function
+/// [`dpiConn_newVar()`]. They are destroyed when the last reference to the
+/// variable is released by calling the function [`dpiVar_release()`]. They are
+/// bound to statements by calling the function [`dpiStmt_bindByName()`] or the
+/// function [`dpiStmt_bindByPos()`]. They can also be used for fetching data
+/// from the database by calling the function [`dpiStmt_define()`].
 pub struct dpiVar {
     _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// Vector handles are used to represent vector values stored in the database. They
+/// are only available from Oracle Client and Database 23.4 and higher. They can be
+/// created explicitly by a call to [`dpiConn_newVector()`] or implicitly when
+/// a variable of type DPI_ORACLE_TYPE_VECTOR is created. They are destroyed when
+/// the last reference is released by a call to the function
+/// [`dpiVector_release()`].
 pub struct dpiVector {
     _unused: [u8; 0],
 }
@@ -350,9 +1249,23 @@ pub type dpiAccessTokenCallback = ::std::option::Option<
 >;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing byte strings to and from the database in
+/// the structure [`dpiData`].
 pub struct dpiBytes {
+
+    /// Specifies the pointer to the memory allocated by ODPI-C for the variable.
+    /// For strings, data written to this memory should be in the encoding
+    /// appropriate to the type of data being transferred. When data is transferred
+    /// from the database it will be in the correct encoding already.
     pub ptr: *mut ::std::os::raw::c_char,
+
+    /// Specifies the length of the byte string, in bytes.
     pub length: u32,
+
+    /// Specifies the encoding for character data. This value is populated when
+    /// data is transferred from the database. It is ignored when data is being
+    /// transferred to the database.
     pub encoding: *const ::std::os::raw::c_char,
 }
 #[test]
@@ -396,11 +1309,25 @@ impl Default for dpiBytes {
 }
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
+
+/// This structure is used for passing interval (days to seconds) data to and from
+/// the database in the structure [`dpiData`].
 pub struct dpiIntervalDS {
+
+    /// Specifies the number of days in the interval.
     pub days: i32,
+
+    /// Specifies the number of hours in the interval.
     pub hours: i32,
+
+    /// Specifies the number of minutes in the interval.
     pub minutes: i32,
+
+    /// Specifies the number of seconds in the interval.
     pub seconds: i32,
+
+    /// Specifies the number of fractional seconds in the interval (in
+    /// nanoseconds).
     pub fseconds: i32,
 }
 #[test]
@@ -445,8 +1372,15 @@ fn bindgen_test_layout_dpiIntervalDS() {
 }
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
+
+/// This structure is used for passing interval (years to months) data to and from
+/// the database in the structure [`dpiData`].
 pub struct dpiIntervalYM {
+
+    /// Specifies the number of years in the interval.
     pub years: i32,
+
+    /// Specifies the number of months in the interval.
     pub months: i32,
 }
 #[test]
@@ -476,9 +1410,22 @@ fn bindgen_test_layout_dpiIntervalYM() {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing JSON node data to and from the database in
+/// the structure [`dpiData`]. Nodes can consist of scalar values,
+/// objects, or arrays.
 pub struct dpiJsonNode {
+
+    /// The Oracle type of the data that is stored in the node. It will be one of
+    /// the values from the enumeration [`dpiOracleTypeNum`].
     pub oracleTypeNum: dpiOracleTypeNum,
+
+    /// The native type of the data that is stored in the node. It will be one of
+    /// the values from the enumeration [`dpiNativeTypeNum`].
     pub nativeTypeNum: dpiNativeTypeNum,
+
+    /// The value that is stored in the node. It is a union of type
+    /// [`dpiDataBuffer`].
     pub value: *mut dpiDataBuffer,
 }
 #[test]
@@ -522,11 +1469,32 @@ impl Default for dpiJsonNode {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing JSON objects to and from the database.
 pub struct dpiJsonObject {
+
+    /// Specifies the number of fields that are found in the JSON object. This also
+    /// identifies the number of elements in each of the remaining arrays.
     pub numFields: u32,
+
+    /// Specifies an array of field names that are found in the JSON object. Each
+    /// element is a byte string encoded in UTF-8. The length of each byte string
+    /// is found in the [`dpiJsonObject.fieldNameLengths`] member.
     pub fieldNames: *mut *mut ::std::os::raw::c_char,
+
+    /// Specifies an array of lengths for the names of the fields found in the JSON
+    /// object.
     pub fieldNameLengths: *mut u32,
+
+    /// Specifies an array of JSON nodes that are the values of the fields found in
+    /// the JSON object. Each of these is a structure of type
+    /// [`dpiJsonNode`].
     pub fields: *mut dpiJsonNode,
+
+    /// Specifies an array of buffers that contain the data for the values of the
+    /// fields found in the JSON object. This member should not be used directly.
+    /// Instead, the [`dpiJsonNode.value`] member of the corresponding node
+    /// in the member [`dpiJsonObject.fields`] should be used.
     pub fieldValues: *mut dpiDataBuffer,
 }
 #[test]
@@ -580,9 +1548,23 @@ impl Default for dpiJsonObject {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing JSON objects to and from the database.
 pub struct dpiJsonArray {
+
+    /// Specifies the number of elements that are found in the JSON array. This
+    /// also identifies the number of elements in each of the remaining arrays.
     pub numElements: u32,
+
+    /// Specifies an array of JSON nodes that are the values of the elements found
+    /// in the JSON array. Each of these is a structure of type
+    /// [`dpiJsonNode`].
     pub elements: *mut dpiJsonNode,
+
+    /// Specifies an array of buffers that contain the data for the values of the
+    /// elements found in the JSON array. This member should not be used directly.
+    /// Instead, the [`dpiJsonNode.value`] member of the corresponding node
+    /// in the member [`dpiJsonArray.elements`] should be used.
     pub elementValues: *mut dpiDataBuffer,
 }
 #[test]
@@ -626,15 +1608,41 @@ impl Default for dpiJsonArray {
 }
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
+
+/// This structure is used for passing timestamp data to and from the database in
+/// the structure [`dpiData`].
 pub struct dpiTimestamp {
+
+    /// Specifies the year for the timestamp.
     pub year: i16,
+
+    /// Specifies the month for the timestamp. This should be between 1 and 12.
     pub month: u8,
+
+    /// Specifies the day for the timestamp. This should be between 1 and 31.
     pub day: u8,
+
+    /// Specifies the hour for the timestamp. This should be between 0 and 23.
     pub hour: u8,
+
+    /// Specifies the minute for the timestamp. This should be between 0 and 59.
     pub minute: u8,
+
+    /// Specifies the second for the timestamp. This should be between 0 and 59.
     pub second: u8,
+
+    /// Specifies the fractional seconds for the timestamp, in nanoseconds.
     pub fsecond: u32,
+
+    /// Specifies the hours offset from UTC. This value is only used for timestamp
+    /// with time zone and timestamp with local time zone columns.
     pub tzHourOffset: i8,
+
+    /// Specifies the minutes offset from UTC. This value is only used for
+    /// timestamp with time zone and timestamp with local time zone columns. Note
+    /// that this value will be negative in the western hemisphere. For example,
+    /// when the timezone is -03:30, tzHourOffset will be -3 and tzMinuteOffset
+    /// will be -30.
     pub tzMinuteOffset: i8,
 }
 #[test]
@@ -699,28 +1707,104 @@ fn bindgen_test_layout_dpiTimestamp() {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
+
+/// This union is used for passing data to and from the database without requiring
+/// casts.
 pub union dpiDataBuffer {
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_BOOLEAN. The value should be either 1 (true) or 0 (false).
     pub asBoolean: ::std::os::raw::c_int,
+
+    /// Only used for getting/setting OCI attributes of 1 byte in length.
     pub asUint8: u8,
+
+    /// Only used for getting/setting OCI attributes of 2 bytes in length.
     pub asUint16: u16,
+
+    /// Only used for getting/setting OCI attributes of 4 bytes in length.
     pub asUint32: u32,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_INT64.
     pub asInt64: i64,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_UINT64.
     pub asUint64: u64,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_FLOAT.
     pub asFloat: f32,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_DOUBLE.
     pub asDouble: f64,
+
+    /// Only used for getting/setting OCI attributes of type string.
     pub asString: *mut ::std::os::raw::c_char,
+
+    /// Raw pointer used for getting/setting all OCI attributes.
     pub asRaw: *mut ::std::os::raw::c_void,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_BYTES. This is a structure of type
+    /// [`dpiBytes`].
     pub asBytes: dpiBytes,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_TIMESTAMP. This is a structure of type
+    /// [`dpiTimestamp`].
     pub asTimestamp: dpiTimestamp,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_INTERVAL_DS. This is a structure of type
+    /// [`dpiIntervalDS`].
     pub asIntervalDS: dpiIntervalDS,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_INTERVAL_YM. This is a structure of type
+    /// [`dpiIntervalYM`].
     pub asIntervalYM: dpiIntervalYM,
+
+    /// Value this is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_JSON. This is a reference to a JSON value which can be used
+    /// for reading and writing the data that belongs to it.
     pub asJson: *mut dpiJson,
+
+    /// Value this is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_JSON_OBJECT. This is a structure of type
+    /// [`dpiJsonObject`].
     pub asJsonObject: dpiJsonObject,
+
+    /// Value this is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_JSON_ARRAY. This is a structure of type
+    /// [`dpiJsonArray`].
     pub asJsonArray: dpiJsonArray,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_LOB. This is a reference to a LOB (large object) which can
+    /// be used for reading and writing the data that belongs to it.
     pub asLOB: *mut dpiLob,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_OBJECT. This is a reference to an object which can be used
+    /// for reading and writing its attributes or element values.
     pub asObject: *mut dpiObject,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_STMT. This is a reference to a statement which can be used
+    /// to query data from the database.
     pub asStmt: *mut dpiStmt,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_ROWID. This is a reference to a rowid which is used to
+    /// uniquely identify a row in a table in the database.
     pub asRowid: *mut dpiRowid,
+
+    /// Value that is used when the native type that is being used is
+    /// DPI_NATIVE_TYPE_VECTOR. This is a reference to a vector value which can be
+    /// used for reading and writing the data that belongs to it.
     pub asVector: *mut dpiVector,
 }
 #[test]
@@ -859,10 +1943,24 @@ impl Default for dpiDataBuffer {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is part of the structure [`dpiDataTypeInfo`]
+/// and provides information about [annotations](https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/annotations_clause.html#GUID-1AC16117-BBB6-4435-8794-2B99F8F68052)
+/// associated with columns that are fetched from the database. Annotations are
+/// only available with Oracle Database 23ai (or later). Oracle Client libraries
+/// must also be 23.1 (or later).
 pub struct dpiAnnotation {
+
+    /// Specifies the annoation key.
     pub key: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the annotation key, in bytes.
     pub keyLength: u32,
+
+    /// Specifies the annoation value.
     pub value: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the annotation value, in bytes.
     pub valueLength: u32,
 }
 #[test]
@@ -911,12 +2009,43 @@ impl Default for dpiAnnotation {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing application context to the database during
+/// the process of creating standalone connections. These values are ignored when
+/// acquiring a connection from a session pool or when using DRCP (Database
+/// Resident Connection Pooling). All values must be set to valid values prior to
+/// being used in the [`dpiConnCreateParams`] structure and
+/// must remain valid until the execution of [`dpiConn_create()`] completes.
+/// Values set using this structure are available in logon triggers by using the
+/// sys_context() SQL function.
 pub struct dpiAppContext {
+
+    /// Specifies the value of the “namespace” parameter to sys_context(). It is
+    /// expected to be a byte string in the encoding specified in the
+    /// [`dpiConnCreateParams`] structure and must not be
+    /// NULL.
     pub namespaceName: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiAppContext.namespaceName`] member,
+    /// in bytes.
     pub namespaceNameLength: u32,
+
+    /// Specifies the value of the “parameter” parameter to sys_context(). It is
+    /// expected to be a byte string in the encoding specified in the
+    /// [`dpiConnCreateParams`] structure and must not be
+    /// NULL.
     pub name: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiAppContext.name`] member, in bytes.
     pub nameLength: u32,
+
+    /// Specifies the value that will be returned from sys_context(). It is
+    /// expected to be a byte string in the encoding specified in the
+    /// [`dpiConnCreateParams`] structure and must not be
+    /// NULL.
     pub value: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiAppContext.value`] member, in bytes.
     pub valueLength: u32,
 }
 #[test]
@@ -975,16 +2104,81 @@ impl Default for dpiAppContext {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for creating session pools and standalone connections to
+/// the database. All members are initialized to default values using the
+/// [`dpiContext_initCommonCreateParams()`] function.
 pub struct dpiCommonCreateParams {
+
+    /// Specifies the mode used for creating connections. It is expected to be
+    /// one or more of the values from the enumeration
+    /// [`dpiCreateMode`], OR’ed together. The default value is
+    /// *DPI_MODE_CREATE_DEFAULT*.
+    /// 
+    /// Note that when this structure is used during creation of a pool, the mode
+    /// *DPI_MODE_CREATE_THREADED* is automatically enabled regardless of what
+    /// value is set in this member.
     pub createMode: dpiCreateMode,
+
+    /// Specifies the encoding to use for CHAR data, as a null-terminated ASCII
+    /// string. Either an IANA or Oracle specific character set name is expected.
+    /// NULL is also acceptable which implies the use of the NLS_LANG environment
+    /// variable (or ASCII, if the NLS_LANG environment variable is not set).
+    /// The default value is the value of the member
+    /// [`dpiContextCreateParams.defaultEncoding`] specified when the call to
+    /// [`dpiContext_createWithParams()`] was made.
     pub encoding: *const ::std::os::raw::c_char,
+
+    /// Specifies the encoding to use for NCHAR data, as a null-terminated ASCII
+    /// string. Either an IANA or Oracle specific character set name is expected.
+    /// NULL is also acceptable which implies the use of the NLS_NCHAR environment
+    /// variable (or the same value as the [`dpiCommonCreateParams.encoding`]
+    /// member if the NLS_NCHAR environment variable is not set). The default
+    /// value is the value of the member
+    /// [`dpiContextCreateParams.defaultEncoding`] specified when the call to
+    /// [`dpiContext_createWithParams()`] was made.
     pub nencoding: *const ::std::os::raw::c_char,
+
+    /// Specifies the edition to be used when creating a standalone connection. It
+    /// is expected to be NULL (meaning that no edition is set) or a byte string in
+    /// the encoding specified by the [`dpiCommonCreateParams.encoding`]
+    /// member. The default value is NULL.
     pub edition: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiCommonCreateParams.edition`] member,
+    /// in bytes. The default value is 0.
     pub editionLength: u32,
+
+    /// Specifies the name of the driver that is being used. It is expected to be
+    /// NULL or a byte string in the encoding specified by the
+    /// [`dpiCommonCreateParams.encoding`] member. The default value is the
+    /// value of the member [`dpiContextCreateParams.defaultDriverName`]
+    /// specified when the call to
+    /// [`dpiContext_createWithParams()`] was made.
     pub driverName: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiCommonCreateParams.driverName`]
+    /// member, in bytes. The default value is the length of the member
+    /// [`dpiContextCreateParams.defaultDriverName`] specified when the call
+    /// to [`dpiContext_createWithParams()`] was made.
     pub driverNameLength: u32,
+
+    /// Specifies whether to enable the SODA metadata cache or not, which can
+    /// significantly improve the performance of repeated calls to methods
+    /// [`dpiSodaDb_createCollection()`] (when not specifying a value for the
+    /// metadata parameter) and [`dpiSodaDb_openCollection()`]. This requires
+    /// Oracle Client 21.3 or higher (also available in Oracle Client 19 from
+    /// 19.11).
     pub sodaMetadataCache: ::std::os::raw::c_int,
+
+    /// Specifies the number of statements to retain in the statement cache. Use a
+    /// value of 0 to disable the statement cache completely.
     pub stmtCacheSize: u32,
+
+    /// Specifies a pointer to a [`dpiAccessToken`] structure.
+    /// Each member of structure is populated with authentication parameters used for
+    /// token based authentication. This requires Oracle Client 19.4 (or later),
+    /// or 21.5 (or later).
     pub accessToken: *mut dpiAccessToken,
 }
 #[test]
@@ -1064,28 +2258,152 @@ impl Default for dpiCommonCreateParams {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for creating connections to the database, whether
+/// standalone or acquired from a session pool. All members are initialized to
+/// default values using the [`dpiContext_initConnCreateParams()`] function.
+/// Care should be taken to ensure a copy of this structure exists only as long as
+/// needed to create the connection since it can contain a clear text copy of
+/// credentials used for connecting to the database.
 pub struct dpiConnCreateParams {
+
+    /// Specifies the mode used for authorizing connections. It is expected to be
+    /// one or more of the values from the enumeration
+    /// [`dpiAuthMode`], OR’ed together. The default value is
+    /// DPI_MODE_AUTH_DEFAULT.
     pub authMode: dpiAuthMode,
+
+    /// Specifies the connection class to use when connecting to the database. This
+    /// is used with DRCP (database resident connection pooling) or to further
+    /// subdivide a session pool. It is expected to be NULL (meaning that no
+    /// connection class will be set) or a byte string in the encoding used for
+    /// CHAR data. The default value is NULL.
     pub connectionClass: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the
+    /// [`dpiConnCreateParams.connectionClass`] member, in bytes. The
+    /// default value is 0.
     pub connectionClassLength: u32,
+
+    /// Specifies the level of purity required when creating a connection using a
+    /// connection class. It is expected to be one of the values from the
+    /// enumeration [`dpiPurity`]. The default value is
+    /// DPI_PURITY_DEFAULT.
     pub purity: dpiPurity,
+
+    /// Specifies the new password to set when creating a connection. This value
+    /// is only used when creating a standalone connection. It is expected to be
+    /// NULL or a byte string in the encoding used for CHAR data. The default value
+    /// of this member is NULL. If specified, the password for the user is changed
+    /// when the connection is created (useful when the password has expired and a
+    /// session cannot be established without changing the password).
     pub newPassword: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiConnCreateParams.newPassword`]
+    /// member, in bytes. The default value is 0.
     pub newPasswordLength: u32,
+
+    /// Specifies the application context that will be set when the connection is
+    /// created. This value is only used when creating standalone connections. It
+    /// is expected to be NULL or an array of [`dpiAppContext`]
+    /// structures. The context specified here can be used in logon triggers, for
+    /// example. The default value is NULL.
     pub appContext: *mut dpiAppContext,
+
+    /// Specifies the number of elements found in the
+    /// [`dpiConnCreateParams.appContext`] member. The default value is 0.
     pub numAppContext: u32,
+
+    /// Specifies whether external authentication should be used to create the
+    /// connection. If this value is 0, the user name and password values must be
+    /// specified in the call to [`dpiConn_create()`]; otherwise, the user
+    /// name and password values must be zero length or NULL. The default value is
+    /// 0.
     pub externalAuth: ::std::os::raw::c_int,
+
+    /// Specifies an OCI service context handle created externally that will be
+    /// used instead of creating a connection from scratch. The default value is
+    /// NULL. Note that this connection depends on the external handle remaining
+    /// valid for the lifetime of this connection. It is also important to ensure
+    /// that the last reference to this connection is released before the external
+    /// service context handle and environment handle are destroyed. Unlike regular
+    /// connections, no attempt is made to rollback any outstanding transactions or
+    /// close any open statements, objects and LOBs when the last reference to this
+    /// connection is released, since attempts to do so after the external service
+    /// context handle and environment are destroyed may result in crashes and
+    /// other undesirable behavior.
     pub externalHandle: *mut ::std::os::raw::c_void,
+
+    /// Specifies the session pool from which to acquire a connection or NULL if
+    /// a standalone connection should be created. The default value is NULL. If
+    /// the method [`dpiPool_acquireConnection()`] is being called, this value
+    /// is ignored.
     pub pool: *mut dpiPool,
+
+    /// Specifies the tag to use when acquiring a connection from a session pool.
+    /// This member is ignored when creating a standalone connection. If specified,
+    /// the tag restricts the type of session that can be returned to those with
+    /// that tag or a NULL tag. If the member
+    /// [`dpiConnCreateParams.matchAnyTag`] is set, however, any session can
+    /// be returned if no matching sessions are found.
+    /// 
+    /// The value is expected to be NULL (any session can be returned) or a byte
+    /// string in the encoding used for CHAR data. The default value is NULL. If
+    /// specified, the value should be one or more properties (specified in the
+    /// form *key=value*) separated by semicolons.
     pub tag: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiConnCreateParams.tag`] member, in
+    /// bytes. The default value is 0.
     pub tagLength: u32,
+
+    /// Specifies whether any tagged session should be accepted when acquiring a
+    /// connection from a session pool, if no connection using the tag specified
+    /// in the [`dpiConnCreateParams.tag`] is available. This value is only
+    /// used when acquiring a connection from a session pool. The default value is
+    /// 0.
     pub matchAnyTag: ::std::os::raw::c_int,
+
+    /// Specifies the tag of the connection that was acquired from a session pool,
+    /// or NULL if the session was not tagged. This member is left untouched when
+    /// creating a standalone connection and is filled in only if the connection
+    /// acquired from the session pool was tagged. If filled in, it is a byte
+    /// string in the encoding used for CHAR data.
     pub outTag: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiConnCreateParams.outTag`]
+    /// member, in bytes.
     pub outTagLength: u32,
+
+    /// Specifies if the connection created used the tag specified by the
+    /// [`dpiConnCreateParams.tag`] member. It is only filled in if the
+    /// connection was acquired from a session pool and a tag was initially
+    /// specified.
     pub outTagFound: ::std::os::raw::c_int,
+
+    /// Specifies an array of [`dpiShardingKeyColumn`]
+    /// structures which are used to identify which database shard should be
+    /// connected to. The number of elements in the array is assumed to contain at
+    /// least [`dpiConnCreateParams.numShardingKeyColumns`] elements.
     pub shardingKeyColumns: *mut dpiShardingKeyColumn,
+
+    /// Specifies the number of elements in the array of sharding key columns found
+    /// in the member [`dpiConnCreateParams.shardingKeyColumns`].
     pub numShardingKeyColumns: u8,
+
+    /// Specifies an array of [`dpiShardingKeyColumn`]
+    /// structures which are used to identify which database shard should be
+    /// connected to. The number of elements in the array is assumed to contain at
+    /// least [`dpiConnCreateParams.numSuperShardingKeyColumns`] elements.
     pub superShardingKeyColumns: *mut dpiShardingKeyColumn,
+
+    /// Specifies the number of elements in the array of sharding key columns found
+    /// in the member [`dpiConnCreateParams.superShardingKeyColumns`].
     pub numSuperShardingKeyColumns: u8,
+
+    /// Specifies if the connection created was newly created by the session pool
+    /// and has never been acquired from the pool (1) or not (0). It is only filled
+    /// in if the connection was acquired from a session pool.
     pub outNewSession: ::std::os::raw::c_int,
 }
 #[test]
@@ -1224,17 +2542,66 @@ impl Default for dpiConnCreateParams {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing information about a connection from ODPI-C.
+/// It is used by the function [`dpiConn_getInfo()`].
 pub struct dpiConnInfo {
+
+    /// A pointer to the name of the Oracle Database Domain name associated with
+    /// the connection, encoded in the encoding used for CHAR data. This is the
+    /// same value returned by the SQL expression
+    /// `SELECT VALUE FROM V$PARAMETER WHERE NAME = 'db_domain'`.
     pub dbDomain: *const ::std::os::raw::c_char,
+
+    /// Contains the length of the [`dpiConnInfo.dbDomain`] member, in bytes.
     pub dbDomainLength: u32,
+
+    /// A pointer to the Oracle Database name associated with the connection,
+    /// encoded in the encoding used for CHAR data. This is the same value returned
+    /// by the SQL expression `SELECT NAME FROM V$DATABASE`. Note the values may
+    /// have different cases.
     pub dbName: *const ::std::os::raw::c_char,
+
+    /// Contains the length of the [`dpiConnInfo.dbName`] member, in bytes.
     pub dbNameLength: u32,
+
+    /// A pointer to the Oracle Database instance name associated with the
+    /// connection, encoded in the encoding used for CHAR data. This is the same
+    /// value returned by the SQL expression
+    /// `SELECT SYS_CONTEXT('USERENV', 'INSTANCE_NAME') FROM DUAL`. Note the
+    /// values may have different cases.
     pub instanceName: *const ::std::os::raw::c_char,
+
+    /// Contains the length of the [`dpiConnInfo.instanceName`] member, in
+    /// bytes.
     pub instanceNameLength: u32,
+
+    /// A pointer to the Oracle Database service name associated with the
+    /// connection, encoded in the encoding used for CHAR data. This is the same
+    /// value returned by the SQL expression
+    /// `SELECT SYS_CONTEXT('USERENV', 'SERVICE_NAME') FROM DUAL`.
     pub serviceName: *const ::std::os::raw::c_char,
+
+    /// Contains the length of the [`dpiConnInfo.serviceName`] member, in
+    /// bytes.
     pub serviceNameLength: u32,
+
+    /// Specifies the maximum length of identifiers (in bytes) supported by the
+    /// database to which the connection has been established. See [Database Object
+    /// Naming Rules](https://www.oracle.com/pls/topic/lookup?ctx=dblatest&id=GUID-75337742-67FD-4EC0-985F-741C93D918DA). The value
+    /// may be 0, 30, or 128. The value 0 indicates the size cannot be reliably
+    /// determined by ODPI-C, which occurs when using Oracle Client libraries 12.1
+    /// (or older) and also connected to Oracle Database 12.2, or later.
     pub maxIdentifierLength: u32,
+
+    /// Specifies the maximum number of cursors that can be opened. This is the
+    /// same value returned by the SQL expression
+    /// `SELECT VALUE FROM V$PARAMETER WHERE NAME = 'open_cursors'`.
     pub maxOpenCursors: u32,
+
+    /// Specifies the type of server process used by the connection. This value
+    /// will be one of the values in the enumeration
+    /// [`dpiServerType`].
     pub serverType: u8,
 }
 #[test]
@@ -1318,13 +2685,72 @@ impl Default for dpiConnInfo {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for specifying parameters when creating an ODPI-C
+/// context by calling [`dpiContext_createWithParams()`].
 pub struct dpiContextCreateParams {
+
+    /// A null-terminated string defining the default driver name to use when
+    /// creating pools or standalone connections.
+    /// 
+    /// The standard is to set this value to `"<name> : <version>"`, where &lt;name&gt;
+    /// is the name of the driver and &lt;version&gt; is its version. There should be a
+    /// single space character before and after the colon.
+    /// 
+    /// This value is shown in database views that give information about
+    /// connections. For example, it is in the `CLIENT_DRIVER` column
+    /// of `V$SESSION_CONNECT_INFO`.
+    /// 
+    /// If this member is NULL, then the default value will be the value of
+    /// `DPI_DEFAULT_DRIVER_NAME` from [dpi.h](https://github.com/oracle/odpi/blob/main/include/dpi.h).
+    /// 
+    /// This member is propagated to the [`dpiCommonCreateParams.driverName`]
+    /// and [`dpiCommonCreateParams.driverNameLength`] members when the
+    /// function [`dpiContext_initCommonCreateParams()`] is called.
     pub defaultDriverName: *const ::std::os::raw::c_char,
+
+    /// A null-terminated string defining the default encoding to use for all
+    /// string data (including NCHAR, NVARCHAR2 and NCLOB data) passed into or
+    /// returned from the database.
+    /// 
+    /// If this member is NULL, then the default value will be “UTF-8”. The Oracle
+    /// equivalent of this is “AL32UTF8”.
+    /// 
+    /// This member is propagated to the [`dpiCommonCreateParams.encoding`]
+    /// and [`dpiCommonCreateParams.nencoding`] members when the
+    /// function [`dpiContext_initCommonCreateParams()`] is called.
     pub defaultEncoding: *const ::std::os::raw::c_char,
+
+    /// A null-terminated UTF-8 encoded string defining the URL that should be
+    /// provided in the error message returned when the Oracle Client library
+    /// cannot be loaded. This URL should direct the user to the installation
+    /// instructions for the application or driver using ODPI-C. If this value is
+    /// NULL then the default ODPI-C URL is provided in the error message instead.
     pub loadErrorUrl: *const ::std::os::raw::c_char,
+
+    /// A null-terminated UTF-8 encoded string defining the location from which to
+    /// load the Oracle Client library. If this value is not NULL it is the only
+    /// location that is searched; otherwise, if this value is NULL the Oracle
+    /// Client library is searched for in the usual fashion as noted in
+    /// [`Oracle Client Library Loading`]. Also see that
+    /// section for limitations on using this member.
     pub oracleClientLibDir: *const ::std::os::raw::c_char,
+
+    /// A null-terminated UTF-8 encoded string defining the location the Oracle
+    /// client library will search for configuration files. This is equivalent to
+    /// setting the environment variable `TNS_ADMIN`. If this value is not NULL,
+    /// it overrides any value set by the environment variable `TNS_ADMIN`.
     pub oracleClientConfigDir: *const ::std::os::raw::c_char,
+
+    /// A boolean value indicating whether or not to use JSON descriptors with
+    /// SODA. This requires Oracle Client 23.4 or higher and setting this value to
+    /// 1 in earlier versions will simply be ignored. Once a call to
+    /// [`dpiContext_createWithParams()`] is made with this structure, this
+    /// member will be cleared if JSON descriptors cannot be used.
     pub sodaUseJsonDesc: ::std::os::raw::c_int,
+
+    /// A boolean value indicating whether or not to treat JSON ID values
+    /// distinctly from other binary data.
     pub useJsonId: ::std::os::raw::c_int,
 }
 #[test]
@@ -1389,8 +2815,34 @@ impl Default for dpiContextCreateParams {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
+
+/// This structure is used for passing data to and from the database in variables
+/// and for getting and setting object attributes and collection values. The data
+/// that is stored in the structure will remain valid for differing durations
+/// depending on the source of the data.
+/// 
+/// For data that is supplied by the application (for passing data into the
+/// database) the duration of the data is under the control of the application
+/// itself and the application should ensure that it remains valid for as long as
+/// any call that uses that data.
+/// 
+/// For data that is supplied by the database in a variable (either fetching data
+/// or binding data out) the data will remain valid as long as a reference to the
+/// variable is retained; the contents of the data may change however if a
+/// statement to which the variable is bound or defined is executed or fetched
+/// again.
+/// 
+/// For data that is acquired from an object attribute or a collection element the
+/// data will remain valid as long as a reference to the object is retained; the
+/// contents of the data may change however if the object is modified.
 pub struct dpiData {
+
+    /// Specifies if the value refers to a null value (1) or not (0).
     pub isNull: ::std::os::raw::c_int,
+
+    /// Specifies the value that is being passed or received. It is only examined
+    /// when the member [`dpiData.isNull`] is 0. It is a union of type
+    /// [`dpiDataBuffer`].
     pub value: dpiDataBuffer,
 }
 #[test]
@@ -1425,27 +2877,116 @@ impl Default for dpiData {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing data type information from ODPI-C. It is
+/// part of the structures [`dpiObjectAttrInfo`],
+/// [`dpiObjectTypeInfo`] and
+/// [`dpiQueryInfo`].
 pub struct dpiDataTypeInfo {
+
+    /// Specifies the type of the data. It will be one of the values from the
+    /// enumeration [`dpiOracleTypeNum`], or 0 if the type
+    /// is not supported by ODPI-C.
     pub oracleTypeNum: dpiOracleTypeNum,
+
+    /// Specifies the default native type for the data. It will be one of the
+    /// values from the enumeration [`dpiNativeTypeNum`], or 0
+    /// if the type is not supported by ODPI-C.
     pub defaultNativeTypeNum: dpiNativeTypeNum,
+
+    /// Specifies the OCI type code for the data, which can be useful if the type
+    /// is not supported by ODPI-C.
     pub ociTypeCode: u16,
+
+    /// Specifies the size in bytes (from the database’s perspective) of the data.
+    /// This value is only populated for strings and binary data. For all other
+    /// data the value is zero.
     pub dbSizeInBytes: u32,
+
+    /// Specifies the size in bytes (from the client’s perspective) of the data.
+    /// This value is only populated for strings and binary data. For all other
+    /// data the value is zero.
     pub clientSizeInBytes: u32,
+
+    /// Specifies the size in characters of the data. This value is only populated
+    /// for string data. For all other data the value is zero.
     pub sizeInChars: u32,
+
+    /// Specifies the precision of the data. This value is only populated for
+    /// numeric and interval data. For all other data the value is zero.
     pub precision: i16,
+
+    /// Specifies the scale of the data. This value is only populated for numeric
+    /// data. For all other data the value is zero.
     pub scale: i8,
+
+    /// Specifies the fractional seconds precision of the data. This value is only
+    /// populated for timestamp and interval day to second data. For all other
+    /// data the value is zero.
     pub fsPrecision: u8,
+
+    /// Specifies a reference to the type of the object. This value is only
+    /// populated for named type data. For all other data the value is NULL. This
+    /// reference is owned by the object attribute, object type or statement and a
+    /// call to [`dpiObjectType_addRef()`] must be made if the reference is
+    /// going to be used beyond the lifetime of the owning object.
     pub objectType: *mut dpiObjectType,
+
+    /// Specifies if the data contains JSON. This is set to true when columns are
+    /// fetched that are of type `DPI_ORACLE_TYPE_JSON` or if the column fetched
+    /// has the check constraint “IS JSON” enabled.
     pub isJson: ::std::os::raw::c_int,
+
+    /// Specifies the schema of the [SQL domain](https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/create-domain.html#GUID-17D3A9C6-D993-4E94-BF6B-CACA56581F41)
+    /// associated with the column which is being queried, as a byte string in the
+    /// encoding used for CHAR data.
     pub domainSchema: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiDataTypeInfo.domainSchema`] member,
+    /// in bytes.
     pub domainSchemaLength: u32,
+
+    /// Specifies the name of the [SQL domain](https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/create-domain.html#GUID-17D3A9C6-D993-4E94-BF6B-CACA56581F41)
+    /// associated with the column which is being queried, as a byte string in the
+    /// encoding used for CHAR data.
     pub domainName: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiDataTypeInfo.domainName`] member,
+    /// in bytes.
     pub domainNameLength: u32,
+
+    /// Specifies the number of annotations associated with the column which is
+    /// being fetched.  It is the length of [`dpiDataTypeInfo.annotations`].
     pub numAnnotations: u32,
+
+    /// Specifies an array of structures of type
+    /// [`dpiAnnotation`]. The length of the array is specified
+    /// in the [`dpiDataTypeInfo.numAnnotations`] member.
     pub annotations: *mut dpiAnnotation,
+
+    /// Specifies if the data contains binary encoded OSON. This is set to true
+    /// when columns are fetched that have the check constraint “IS JSON FORMAT
+    /// OSON” enabled.
     pub isOson: ::std::os::raw::c_int,
+
+    /// Specifies the number of dimensions that a vector column contains. This
+    /// value will be 0 if [`dpiDataTypeInfo.oracleTypeNum`] is not
+    /// DPI_ORACLE_TYPE_VECTOR or the vector columns uses a flexible number of
+    /// dimensions.
     pub vectorDimensions: u32,
+
+    /// Specifies the storage format of the vector column. This value will be 0 if
+    /// [`dpiDataTypeInfo.oracleTypeNum`] is not DPI_ORACLE_TYPE_VECTOR or
+    /// the vector column uses a flexible storage format. If a value is set it will
+    /// be one of the values in the eneumeration
+    /// [`dpiVectorFormat`].
     pub vectorFormat: u8,
+
+    /// Specifies flags for the vector column. This value will be 0 if
+    /// [`dpiDataTypeInfo.oracleTypeNum`] is not DPI_ORACLE_TYPE_VECTOR or
+    /// no flags have been set. If flags have been set, they will be one or more of
+    /// the values in the enumeration [`dpiVectorFlags`], or’ed
+    /// together.
     pub vectorFlags: u8,
 }
 #[test]
@@ -1579,10 +3120,36 @@ impl Default for dpiDataTypeInfo {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used when creating connection pools and standalone
+/// connections using token based authentication. Oracle Client libraries
+/// must be 19.14 (or later), or 21.5 (or later).
+/// 
+/// The externalAuth must be set to 1 and in addition, homogeneous must be
+/// set to 1 when creating a pool. The user (or username) and password properties
+/// should not be set.
+/// 
+/// Both token and privateKey (and their lengths) must be set while using IAM
+/// for token based authentication.
+/// 
+/// Only token and it’s length must be set while using OAuth for token based
+/// authentication.
 pub struct dpiAccessToken {
+
+    /// Specifies the database authentication token string used for token based
+    /// authentication.
     pub token: *const ::std::os::raw::c_char,
+
+    /// Specifies the database authentication token string length used for token
+    /// based authentication.
     pub tokenLength: u32,
+
+    /// Specifies the database authentication private key string used for token
+    /// based authentication.
     pub privateKey: *const ::std::os::raw::c_char,
+
+    /// Specifies the database authentication private key string length used for
+    /// token based authentication.
     pub privateKeyLength: u32,
 }
 #[test]
@@ -1631,10 +3198,31 @@ impl Default for dpiAccessToken {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for transferring encoding information from ODPI-C. All of
+/// the information here remains valid as long as a reference is held to the
+/// standalone connection (by calling [`dpiConn_getEncodingInfo()`]) or session
+/// pool (by calling [`dpiPool_getEncodingInfo()`]) from which the information
+/// was taken.
 pub struct dpiEncodingInfo {
+
+    /// The encoding used for CHAR data, as a null-terminated ASCII string.
     pub encoding: *const ::std::os::raw::c_char,
+
+    /// The maximum number of bytes required for each character in the encoding
+    /// used for CHAR data. This value is used when calculating the size of
+    /// buffers required when lengths in characters are provided.
     pub maxBytesPerCharacter: i32,
+
+    /// The encoding used for NCHAR data, as a null-terminated ASCII string.
     pub nencoding: *const ::std::os::raw::c_char,
+
+    /// The maximum number of bytes required for each character in the encoding
+    /// used for NCHAR data. Since this information is not directly available
+    /// from Oracle it is only accurate if the encodings used for CHAR and NCHAR
+    /// data are identical or one of ASCII or UTF-8; otherwise a value of 4 is
+    /// assumed. This value is used when calculating the size of buffers required
+    /// when lengths in characters are provided.
     pub nmaxBytesPerCharacter: i32,
 }
 #[test]
@@ -1683,17 +3271,59 @@ impl Default for dpiEncodingInfo {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for transferring error information from ODPI-C. All of the
+/// strings referenced here may become invalid as soon as the next ODPI-C call is
+/// made.
 pub struct dpiErrorInfo {
+
+    /// The OCI error code if an OCI error has taken place. If no OCI error has
+    /// taken place the value is 0.
     pub code: i32,
+
+    /// The 16-bit value of [`dpiErrorInfo.offset`] retained for backwards
+    /// compatibility. This member will be removed at some point in the future.
     pub offset16: u16,
+
+    /// The error message as a byte string in the encoding specified by the
+    /// [`dpiErrorInfo.encoding`] member.
     pub message: *const ::std::os::raw::c_char,
+
+    /// The length of the [`dpiErrorInfo.message`] member, in bytes.
     pub messageLength: u32,
+
+    /// The encoding in which the error message is encoded as a null-terminated
+    /// string. For OCI errors this is the CHAR encoding used when the connection
+    /// was created. For ODPI-C specific errors this is UTF-8.
     pub encoding: *const ::std::os::raw::c_char,
+
+    /// The public ODPI-C function name which was called in which the error took
+    /// place. This is a null-terminated ASCII string.
     pub fnName: *const ::std::os::raw::c_char,
+
+    /// The internal action that was being performed when the error took place.
+    /// This is a null-terminated ASCII string.
     pub action: *const ::std::os::raw::c_char,
+
+    /// The SQLSTATE code associated with the error. This is a 5 character
+    /// null-terminated string.
     pub sqlState: *const ::std::os::raw::c_char,
+
+    /// A boolean value indicating if the error is recoverable. This member always
+    /// has a value of 0 unless both client and server are at release 12.1 or
+    /// higher.
     pub isRecoverable: ::std::os::raw::c_int,
+
+    /// A boolean value indicating if the error information is for a warning
+    /// returned by Oracle that does not prevent the requested operation from
+    /// proceeding. Examples include connecting to the database with a password
+    /// that is about to expire (within the grace period) and creating a stored
+    /// procedure with compilation errors.
     pub isWarning: ::std::os::raw::c_int,
+
+    /// The parse error offset (in bytes) when executing a statement or the row
+    /// offset when performing bulk operations or fetching batch error information.
+    /// If neither of these cases are true, the value is 0.
     pub offset: u32,
 }
 #[test]
@@ -1777,9 +3407,21 @@ impl Default for dpiErrorInfo {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing information about an object type from ODPI-C.
+/// It is used by the function [`dpiObjectAttr_getInfo()`].
 pub struct dpiObjectAttrInfo {
+
+    /// Specifies the name of the attribute, as a byte string in the encoding used
+    /// for CHAR data.
     pub name: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiObjectAttrInfo.name`] member, in
+    /// bytes.
     pub nameLength: u32,
+
+    /// Specifies the type of data of the attribute. It is a structure of type
+    /// [`dpiDataTypeInfo`].
     pub typeInfo: dpiDataTypeInfo,
 }
 #[test]
@@ -1823,15 +3465,45 @@ impl Default for dpiObjectAttrInfo {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing information about an object type from ODPI-C.
+/// It is used by the function [`dpiObjectType_getInfo()`].
 pub struct dpiObjectTypeInfo {
+
+    /// Specifies the schema which owns the object type, as a byte string in the
+    /// encoding used for CHAR data.
     pub schema: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiObjectTypeInfo.schema`] member, in
+    /// bytes.
     pub schemaLength: u32,
+
+    /// Specifies the name of the object type, as a byte string in the encoding
+    /// used for CHAR data.
     pub name: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiObjectTypeInfo.name`] member, in
+    /// bytes.
     pub nameLength: u32,
+
+    /// Specifies if the object type is a collection (1) or not (0).
     pub isCollection: ::std::os::raw::c_int,
+
+    /// Specifies the type of data of the elements in the collection. It is a
+    /// structure of type [`dpiDataTypeInfo`] which is only
+    /// valid if the object type is a collection.
     pub elementTypeInfo: dpiDataTypeInfo,
+
+    /// Specifies the number of attributes that the object type has.
     pub numAttributes: u16,
+
+    /// Specifies the name of the name of the package for a PL/SQL type, as a byte
+    /// string in the encoding used for CHAR data. If the type is not a PL/SQL
+    /// type, this value is NULL.
     pub packageName: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiObjectTypeInfo.packageName`] member,
+    /// in bytes.
     pub packageNameLength: u32,
 }
 #[test]
@@ -1905,24 +3577,145 @@ impl Default for dpiObjectTypeInfo {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for creating session pools, which can in turn be used to
+/// create connections that are acquired from that session pool. All members are
+/// initialized to default values using the
+/// [`dpiContext_initPoolCreateParams()`] function.
 pub struct dpiPoolCreateParams {
+
+    /// Specifies the minimum number of sessions to be created by the session pool.
+    /// This value is ignored if the [`dpiPoolCreateParams.homogeneous`]
+    /// member has a value of 0. The default value is 1.
     pub minSessions: u32,
+
+    /// Specifies the maximum number of sessions that can be created by the session
+    /// pool. Values of 1 and higher are acceptable. The default value is 1.
     pub maxSessions: u32,
+
+    /// Specifies the number of sessions that will be created by the session pool
+    /// when more sessions are required and the number of sessions is less than
+    /// the maximum allowed. This value is ignored if the
+    /// [`dpiPoolCreateParams.homogeneous`] member has a value of 0. This
+    /// value added to the [`dpiPoolCreateParams.minSessions`] member value
+    /// must not exceed the [`dpiPoolCreateParams.maxSessions`] member value.
+    /// The default value is 0.
     pub sessionIncrement: u32,
+
+    /// Specifies the number of seconds since a connection has last been used
+    /// before a ping will be performed to verify that the connection is still
+    /// valid. A negative value disables this check. The default value is 60.
     pub pingInterval: ::std::os::raw::c_int,
+
+    /// Specifies the number of milliseconds to wait when performing a ping to
+    /// verify the connection is still valid before the connection is considered
+    /// invalid and is dropped. The default value is 5000 (5 seconds).
     pub pingTimeout: ::std::os::raw::c_int,
+
+    /// Specifies whether the pool is homogeneous or not. In a homogeneous pool all
+    /// connections use the same credentials whereas in a heterogeneous pool other
+    /// credentials are permitted. The default value is 1.
     pub homogeneous: ::std::os::raw::c_int,
+
+    /// Specifies whether external authentication should be used to create the
+    /// sessions in the pool. If this value is 0, the user name and password values
+    /// must be specified in the call to [`dpiPool_create()`]; otherwise, the
+    /// user name and password values must be zero length or NULL. The default
+    /// value is 0. External authentication cannot be used with homogeneous pools.
     pub externalAuth: ::std::os::raw::c_int,
+
+    /// Specifies the mode to use when sessions are acquired from the pool. It is
+    /// expected to be one of the values from the enumeration
+    /// [`dpiPoolGetMode`]. The default value is
+    /// DPI_MODE_POOL_GET_NOWAIT. This value can be set after the pool has been
+    /// created using the function [`dpiPool_setGetMode()`] and acquired using
+    /// the function [`dpiPool_getGetMode()`].
     pub getMode: dpiPoolGetMode,
+
+    /// This member is populated upon successful creation of a pool using the
+    /// function [`dpiPool_create()`]. It is a byte string in the encoding
+    /// used for CHAR data. Any value specified prior to creating the session pool
+    /// is ignored.
     pub outPoolName: *const ::std::os::raw::c_char,
+
+    /// This member is populated upon successful creation of a pool using the
+    /// function [`dpiPool_create()`]. It is the length of the
+    /// [`dpiPoolCreateParams.outPoolName`] member, in bytes. Any value
+    /// specified prior to creating the session pool is ignored.
     pub outPoolNameLength: u32,
+
+    /// Specifies the length of time (in seconds) after which idle sessions in the
+    /// pool are terminated. Note that termination only occurs when the pool is
+    /// accessed. The default value is 0 which means that no idle sessions are
+    /// terminated. This value can be set after the pool has been created using the
+    /// function [`dpiPool_setTimeout()`] and acquired using the function
+    /// [`dpiPool_getTimeout()`].
     pub timeout: u32,
+
+    /// Specifies the length of time (in milliseconds) that the caller should wait
+    /// for a session to become available in the pool before returning with an
+    /// error. This value is only used if the
+    /// [`dpiPoolCreateParams.getMode`] member is set to the value
+    /// DPI_MODE_POOL_GET_TIMEDWAIT. The default value is 0. This value can be set
+    /// after the pool has been created using the function
+    /// [`dpiPool_setWaitTimeout()`] and acquired using the function
+    /// [`dpiPool_getWaitTimeout()`].
     pub waitTimeout: u32,
+
+    /// Specifies the maximum length of time (in seconds) a pooled session may
+    /// exist. Sessions in use will not be closed. They become candidates for
+    /// termination only when they are released back to the pool and have existed
+    /// for longer than maxLifetimeSession seconds. Session termination only occurs
+    /// when the pool is accessed. The default value is 0 which means that there is
+    /// no maximum length of time that a pooled session may exist. This value can
+    /// be set after the pool has been created using the function
+    /// [`dpiPool_setMaxLifetimeSession()`] and acquired using the function
+    /// [`dpiPool_getMaxLifetimeSession()`].
     pub maxLifetimeSession: u32,
+
+    /// Specifies the name of a PL/SQL procedure in the format
+    /// *schema.package.callback_proc* which will be called when a session is
+    /// checked out from the pool and the requested tag doesn’t match the actual
+    /// tag assigned to the session. The procedure accepts the desired
+    /// and actual tags as parameters and it is the responsibility of the procedure
+    /// to ensure that the session matches the desired state upon completion. See
+    /// the [OCI documentation](https://www.oracle.com/pls/topic/lookup?ctx=dblatest&id=GUID-B853A020-752F-494A-8D88-D0396EF57177) for more
+    /// information. The value is expected to be a byte string in the encoding used
+    /// for CHAR data. This functionality is only available when Oracle Client
+    /// is at version 12.2 and higher.
     pub plsqlFixupCallback: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the PL/SQL fixup callback, in bytes.
     pub plsqlFixupCallbackLength: u32,
+
+    /// Specifies the maximum number of sessions that can be created by the session
+    /// pool for each shard in a sharded database. Set this attribute to a value
+    /// other than zero to ensure that the pool is balanced towards each shard. A
+    /// value of zero will not set any maximum number of sessions for each shard.
+    /// If the Oracle client library version is less than 18.3, this value is
+    /// ignored.
     pub maxSessionsPerShard: u32,
+
+    /// The callback function which will get called by the connection pool if the
+    /// pool needs to expand and create new connections but the current
+    /// authentication token has expired.
+    /// 
+    /// The function should get a new authentication token and then set
+    /// [`dpiAccessToken.token`] and [`dpiAccessToken.privateKey`]
+    /// in the accessToken argument. The authentication token can be generated by
+    /// invoking the Oracle Cloud Infrastructure (OCI) Command Line Interface
+    /// (CLI).
+    /// 
+    /// The function should return DPI_SUCCESS for success and DPI_FAILURE
+    /// for failure. Returning DPI_FAILURE will cause the connection to fail
+    /// and return ORA-01017 to the application.
+    /// 
+    /// The callback accepts the following arguments:
     pub accessTokenCallback: dpiAccessTokenCallback,
+
+    /// Specifies the value that will be used as the first argument to the callback
+    /// specified in the [`dpiPoolCreateParams.accessTokenCallback`]
+    /// member. The default value is NULL.
     pub accessTokenCallbackContext: *mut ::std::os::raw::c_void,
 }
 #[test]
@@ -2041,10 +3834,26 @@ impl Default for dpiPoolCreateParams {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing query metadata from ODPI-C. It is populated
+/// by the function [`dpiStmt_getQueryInfo()`]. All values remain valid as long
+/// as a reference is held to the statement and the statement is not re-executed or
+/// closed.
 pub struct dpiQueryInfo {
+
+    /// Specifies the name of the column which is being queried, as a byte string
+    /// in the encoding used for CHAR data.
     pub name: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiQueryInfo.name`] member, in bytes.
     pub nameLength: u32,
+
+    /// Specifies the type of data of the column that is being queried. It is a
+    /// structure of type [`dpiDataTypeInfo`].
     pub typeInfo: dpiDataTypeInfo,
+
+    /// Specifies if the data that is being queried may return null values (1) or
+    /// not (0).
     pub nullOk: ::std::os::raw::c_int,
 }
 #[test]
@@ -2093,8 +3902,33 @@ impl Default for dpiQueryInfo {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used to set recipients for an AQ message.
+/// 
+/// A list of recipient names can be associated with a message at the time
+/// a message is enqueued. This allows a limited set of recipients to
+/// dequeue each message. The recipient list associated with the message
+/// overrides the queue subscriber list, if there is one. The recipient
+/// names need not be in the subscriber list but can be, if desired.
+/// 
+/// To dequeue a message, the consumername attribute can be set to one of
+/// the recipient names. The original message recipient list is not
+/// available on dequeued messages. All recipients have to dequeue a
+/// message before it gets removed from the queue.
+/// 
+/// Subscribing to a queue is like subscribing to a magazine: each
+/// subscriber can dequeue all the messages placed into a specific queue,
+/// just as each magazine subscriber has access to all its articles. Being
+/// a recipient, however, is like getting a letter: each recipient is a
+/// designated target of a particular message.
 pub struct dpiMsgRecipient {
+
+    /// Specifies the name of the message recipient, in the encoding used for
+    /// CHAR data.
     pub name: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiMsgRecipient.name`] member, in
+    /// bytes.
     pub nameLength: u32,
 }
 #[test]
@@ -2133,9 +3967,27 @@ impl Default for dpiMsgRecipient {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
+
+/// This structure is used for passing sharding key column values to the database.
+/// It is part of the structure [`dpiConnCreateParams`].
 pub struct dpiShardingKeyColumn {
+
+    /// Specifies the Oracle type of the column which makes up the sharding key. It
+    /// is expected to be one of the values from the enumeration
+    /// [`dpiOracleTypeNum`] but currently only the value
+    /// DPI_ORACLE_TYPE_VARCHAR is supported.
     pub oracleTypeNum: dpiOracleTypeNum,
+
+    /// Specifies the native type of the column which makes up the sharding key. It
+    /// is expected to be one of the values from the enumeration
+    /// [`dpiNativeTypeNum`] but currently only the value
+    /// DPI_NATIVE_TYPE_BYTES is supported.
     pub nativeTypeNum: dpiNativeTypeNum,
+
+    /// Specifies the value of the column which makes up the sharding key. It is a
+    /// union of type [`dpiDataBuffer`] and the member of the
+    /// union that is set must correspond to the value of the member
+    /// [`dpiShardingKeyColumn.nativeTypeNum`].
     pub value: dpiDataBuffer,
 }
 #[test]
@@ -2179,6 +4031,11 @@ impl Default for dpiShardingKeyColumn {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
+
+/// This structure is used for receiving a list of strings from such functions as
+/// [`dpiSodaDb_getCollectionNames()`] and [`dpiSodaColl_listIndexes()`].
+/// The memory referenced by this structure should be freed by the function
+/// [`dpiContext_freeStringList()`] and should not be manipulated directly.
 pub struct dpiStringList {
     pub __bindgen_anon_1: dpiStringList__bindgen_ty_1,
     pub __bindgen_anon_2: dpiStringList__bindgen_ty_2,
@@ -2331,21 +4188,101 @@ impl Default for dpiStringList {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing search criteria to a number of SODA
+/// operations. It is initialized using the function
+/// [`dpiContext_initSodaOperOptions()`] and used by the functions
+/// [`dpiSodaColl_find()`], [`dpiSodaColl_findOne()`],
+/// [`dpiSodaColl_getDocCount()`], [`dpiSodaColl_remove()`]
+/// and [`dpiSodaColl_replaceOne()`].
 pub struct dpiSodaOperOptions {
+
+    /// Specifies the number of elements in the members
+    /// [`dpiSodaOperOptions.keys`] and
+    /// [`dpiSodaOperOptions.keyLengths`].
     pub numKeys: u32,
+
+    /// Specifies an array of key values which documents in the collection must
+    /// have in order to be processed by the operation. The length of this array
+    /// is defined by the member [`dpiSodaOperOptions.numKeys`].
     pub keys: *mut *const ::std::os::raw::c_char,
+
+    /// Specifies an array of key length values. Each element corresponds to the
+    /// length of the key (in bytes) found in the member
+    /// [`dpiSodaOperOptions.keys`] at the same element index. The length of
+    /// this array is defined by the member [`dpiSodaOperOptions.numKeys`].
     pub keyLengths: *mut u32,
+
+    /// Specifies the key which the document must have in order to be processed by
+    /// the operation.
     pub key: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the member [`dpiSodaOperOptions.key`], in
+    /// bytes.
     pub keyLength: u32,
+
+    /// Specifies the document version that documents must have in order to be
+    /// processed by the operation. This is typically used in conjunction with
+    /// [`dpiSodaOperOptions.key`] and allows for opportunistic locking,
+    /// so that operations do not affect a document that someone else has already
+    /// modified.
     pub version: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the member [`dpiSodaOperOptions.version`],
+    /// in bytes.
     pub versionLength: u32,
+
+    /// Specifies a filter value which limits the documents processed by the
+    /// operation. See [Overview of SODA Filter Specifications (QBEs)](https://www.oracle.com/pls/topic/lookup?ctx=dblatest&id=GUID-CB09C4E3-BBB1-40DC-88A8-8417821B0FBE).
     pub filter: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the member [`dpiSodaOperOptions.filter`],
+    /// in bytes.
     pub filterLength: u32,
+
+    /// Specifies the number of documents to skip before processing documents in
+    /// the collection. A value of 0 will result in no documents being skipped.
     pub skip: u32,
+
+    /// Specifies the maximum number of documents to process in the collection. A
+    /// value of 0 means no limit is enforced.
     pub limit: u32,
+
+    /// Specifies the number of documents that will be fetched at one time from a
+    /// SODA collection. Increasing this value reduces the number of round-trips to
+    /// the database but increases the amount of memory allocated. A value of 0
+    /// means that the default value (100) is used. This member is only supported
+    /// in Oracle Client 19.5 and higher.
     pub fetchArraySize: u32,
+
+    /// Specifies a hint that will be passed through to the SODA operation. These
+    /// hints are the same as the hints used for normal SQL operations but without
+    /// the enclosing comment characters. This member is only supported in Oracle
+    /// Client 21.3 and higher (also available in Oracle Client 19 from 19.11).
     pub hint: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the member [`dpiSodaOperOptions.hint`],
+    /// in bytes. This member is only supported in Oracle Client 21.3 and higher
+    /// (also available in Oracle Client 19 from 19.11).
     pub hintLength: u32,
+
+    /// Specifies whether the documents fetched from the collection should be
+    /// locked (equivalent to SQL “select for update”). The next commit or
+    /// rollback on the connection made after the operation is performed will
+    /// “unlock” the documents. Ensure that the flag
+    /// `DPI_SODA_FLAGS_ATOMIC_COMMIT` is not used for the operation as otherwise
+    /// the lock will be removed immediately.
+    /// 
+    /// This member should only be used with read operations (other than
+    /// [`dpiSodaColl_getDocCount()`]) and should not be used in conjunction
+    /// with the [`dpiSodaOperOptions.skip`] and
+    /// [`dpiSodaOperOptions.limit`] members.
+    /// 
+    /// If this member is specified in conjunction with a write operation the value
+    /// is ignored.
+    /// 
+    /// This member is only supported in Oracle Client 21.3 and higher (also
+    /// available in Oracle Client 19 from 19.11).
     pub lock: ::std::os::raw::c_int,
 }
 #[test]
@@ -2449,12 +4386,33 @@ impl Default for dpiSodaOperOptions {
 }
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
+
+/// This structure is used for passing information about a statement from ODPI-C. It
+/// is used by the function [`dpiStmt_getInfo()`].
 pub struct dpiStmtInfo {
+
+    /// Specifies if the statement refers to a query (1) or not (0).
     pub isQuery: ::std::os::raw::c_int,
+
+    /// Specifies if the statement refers to a PL/SQL block (1) or not (0).
     pub isPLSQL: ::std::os::raw::c_int,
+
+    /// Specifies if the statement refers to DDL (data definition language) such
+    /// as creating a table (1) or not (0).
     pub isDDL: ::std::os::raw::c_int,
+
+    /// Specifies if the statement refers to DML (data manipulation language) such
+    /// as inserting, updating and deleting (1) or not (0).
     pub isDML: ::std::os::raw::c_int,
+
+    /// Specifies the type of statement that has been prepared. The members
+    /// [`dpiStmtInfo.isQuery`], [`dpiStmtInfo.isPLSQL`],
+    /// [`dpiStmtInfo.isDDL`] and [`dpiStmtInfo.isDML`] are all
+    /// categorizations of this value. It will be one of the values from the
+    /// enumeration [`dpiStatementType`].
     pub statementType: dpiStatementType,
+
+    /// Specifies if the statement has a returning clause in it (1) or not (0).
     pub isReturning: ::std::os::raw::c_int,
 }
 #[test]
@@ -2507,25 +4465,125 @@ pub type dpiSubscrCallback = ::std::option::Option<
 >;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for creating subscriptions to messages sent for object
+/// change notification, query change notification or advanced queuing. All members
+/// are initialized to default values using the
+/// [`dpiContext_initSubscrCreateParams()`] function.
 pub struct dpiSubscrCreateParams {
+
+    /// Specifies the namespace in which the subscription is created. It is
+    /// expected to be one of the values from the enumeration
+    /// [`dpiSubscrNamespace`]. The default value is
+    /// DPI_SUBSCR_NAMESPACE_DBCHANGE.
     pub subscrNamespace: dpiSubscrNamespace,
+
+    /// Specifies the protocol used for sending notifications for the subscription.
+    /// It is expected to be one of the values from the enumeration
+    /// [`dpiSubscrProtocol`]. The default value is
+    /// DPI_SUBSCR_PROTO_CALLBACK.
     pub protocol: dpiSubscrProtocol,
+
+    /// Specifies the quality of service flags to use with the subscription. It is
+    /// expected to be one or more of the values from the enumeration
+    /// [`dpiSubscrQOS`], OR’ed together. The default value is to
+    /// have no flags set.
     pub qos: dpiSubscrQOS,
+
+    /// Specifies which operations on the registered tables or queries should
+    /// result in notifications. It is expected to be one or more of the values
+    /// from the enumeration [`dpiOpCode`], OR’ed together. The
+    /// default value is DPI_OPCODE_ALL_OPS.
     pub operations: dpiOpCode,
+
+    /// Specifies the port number on which to receive notifications. The default
+    /// value is 0, which means that a port number will be selected by the Oracle
+    /// client.
     pub portNumber: u32,
+
+    /// Specifies the length of time, in seconds, before the subscription is
+    /// unregistered. If the value is 0, the subscription remains active until
+    /// explicitly unregistered. The default value is 0.
     pub timeout: u32,
+
+    /// Specifies the name of the subscription, as a byte string in the encoding
+    /// used for CHAR data. This name must be consistent with the namespace
+    /// identified in the [`dpiSubscrCreateParams.subscrNamespace`] member.
+    /// The default value is NULL.
     pub name: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiSubscrCreateParams.name`] member, in
+    /// bytes. The default value is 0.
     pub nameLength: u32,
+
+    /// Specifies the callback that will be called when a notification is sent to
+    /// the subscription, if the [`dpiSubscrCreateParams.protocol`] member
+    /// is set to DPI_SUBSCR_PROTO_CALLBACK. The callback accepts the following
+    /// arguments:
+    /// 
+    /// The default value is NULL. If a callback is specified and a notification is
+    /// sent, this will be performed on a separate thread. If database operations
+    /// are going to take place, ensure that the create mode
+    /// DPI_MODE_CREATE_THREADED is set in the structure
+    /// [`dpiCommonCreateParams`] when creating the
+    /// session pool or standalone connection that will be used in this callback.
     pub callback: dpiSubscrCallback,
+
+    /// Specifies the value that will be used as the first argument to the callback
+    /// specified in the [`dpiSubscrCreateParams.callback`] member. The
+    /// default value is NULL.
     pub callbackContext: *mut ::std::os::raw::c_void,
+
+    /// Specifies the name of the recipient to which notifications are sent when
+    /// the [`dpiSubscrCreateParams.protocol`] member is not set to
+    /// DPI_SUBSCR_PROTO_CALLBACK. The value is expected to be a byte string in the
+    /// encoding used for CHAR data. The default value is NULL.
     pub recipientName: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiSubscrCreateParams.recipientName`]
+    /// member, in bytes. The default value is 0.
     pub recipientNameLength: u32,
+
+    /// Specifies the IP address on which the subscription listens to receive
+    /// notifications. The IP address can be an IPv4 address in dotted decimal
+    /// format such as 192.1.2.34 or an IPv6 address in hexadecimal format such as
+    /// 2001:0db8:0000:0000:0217:f2ff:fe4b:4ced. The default value is NULL which
+    /// means that an IP address will be selected by the Oracle client.
     pub ipAddress: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiSubscrCreateParams.ipAddress`]
+    /// member, in bytes. The default value is 0.
     pub ipAddressLength: u32,
+
+    /// Specifies the grouping class to use when grouping events. It should be one
+    /// of the values from the enumeration
+    /// [`dpiSubscrGroupingClass`]. The default value is
+    /// 0. If this value is 0, the groupingValue and groupingType attributes are
+    /// ignored.
     pub groupingClass: u8,
+
+    /// Specifies the value to be used in grouping. The meaning of this value
+    /// depends on the value of the groupingClass attribute. For time based
+    /// grouping this value refers to the number of seconds during which events
+    /// will be grouped together. The default value is 0.
     pub groupingValue: u32,
+
+    /// Specifies the type of grouping to use when grouping events. It should be
+    /// one of the values from the enumeration
+    /// [`dpiSubscrGroupingType`]. The default value is
+    /// DPI_SUBSCR_GROUPING_TYPE_SUMMARY.
     pub groupingType: u8,
+
+    /// Specifies the registration id of the subscription that corresponds to the
+    /// REG_ID column in the USER_SUBSCR_REGISTRATIONS and DBA_SUBSCR_REGISTRATIONS
+    /// views in the database. It will be populated for CQN registrations after a
+    /// successful call to [`dpiConn_subscribe()`].
     pub outRegId: u64,
+
+    /// Specifies whether a client initiated connection should be created (1) or
+    /// a server initiated connection should be created (0). The default value is
+    /// 0. This feature is only available when Oracle Client 19.4 and Oracle
+    /// Database 19.4 or higher are being used.
     pub clientInitiated: ::std::os::raw::c_int,
 }
 #[test]
@@ -2650,23 +4708,101 @@ impl Default for dpiSubscrCreateParams {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing messages sent by notifications to
+/// subscriptions. It is the second parameter to the callback method specified in
+/// the [`dpiSubscrCreateParams`] structure.
 pub struct dpiSubscrMessage {
+
+    /// Specifies the type of event that took place which generated the
+    /// notification. It will be one of the values from the enumeration
+    /// [`dpiEventType`].
     pub eventType: dpiEventType,
+
+    /// Specifies the name of the database which generated the notification, as a
+    /// byte string in the encoding used for CHAR data. This value is not
+    /// populated when the [`dpiSubscrMessage.eventType`] member is set to
+    /// the values DPI_EVENT_AQ or DPI_EVENT_DEREG.
     pub dbName: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiSubscrMessage.dbName`] member, in
+    /// bytes.
     pub dbNameLength: u32,
+
+    /// Specifies a pointer to an array of
+    /// [`dpiSubscrMessageTable`] structures representing
+    /// the list of tables that were modified and generated this notification. This
+    /// value is only populated when the value of the
+    /// [`dpiSubscrMessage.eventType`] member is set to DPI_EVENT_OBJCHANGE.
     pub tables: *mut dpiSubscrMessageTable,
+
+    /// Specifies the number of structures available in the
+    /// [`dpiSubscrMessage.tables`] member.
     pub numTables: u32,
+
+    /// Specifies a pointer to an array of
+    /// [`dpiSubscrMessageQuery`] structures representing
+    /// the list of queries that were modified and generated this notification.
+    /// This value is only populated when the value of the
+    /// [`dpiSubscrMessage.eventType`] member is set to
+    /// DPI_EVENT_QUERYCHANGE.
     pub queries: *mut dpiSubscrMessageQuery,
+
+    /// Specifies the number of structures available in the
+    /// [`dpiSubscrMessage.queries`] member.
     pub numQueries: u32,
+
+    /// Specifies a pointer to a [`dpiErrorInfo`] structure. This
+    /// value will be NULL if no error has taken place. If this value is not NULL
+    /// the other members in this structure will not be populated.
     pub errorInfo: *mut dpiErrorInfo,
+
+    /// Specifies the id of the transaction which generated the notification, as a
+    /// series of bytes. This value is not populated when the
+    /// [`dpiSubscrMessage.eventType`] member is set to the values
+    /// DPI_EVENT_AQ or DPI_EVENT_DEREG.
     pub txId: *const ::std::os::raw::c_void,
+
+    /// Specifies the length of the [`dpiSubscrMessage.txId`] member, in
+    /// bytes.
     pub txIdLength: u32,
+
+    /// Specifies whether the subscription is registered with the database (1) or
+    /// not (0). The subscription is automatically deregistered with the database
+    /// when the subscription timeout value is reached or when the first
+    /// notification is sent (when the quality of service flag
+    /// DPI_SUBSCR_QOS_DEREG_NFY is used).
     pub registered: ::std::os::raw::c_int,
+
+    /// Specifies the name of the queue which has messages available to dequeue, as
+    /// a byte string in the encoding used for CHAR data. This value is only
+    /// populated when the [`dpiSubscrMessage.eventType`] member is set to
+    /// the value DPI_EVENT_AQ.
     pub queueName: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiSubscrMessage.queueName`] member,
+    /// in bytes.
     pub queueNameLength: u32,
+
+    /// Specifies the consumer name of the queue which has messages available to
+    /// dequeue, as a byte string in the encoding used for CHAR data. This value is
+    /// only populated when the [`dpiSubscrMessage.eventType`] member is set
+    /// to the value DPI_EVENT_AQ. It is also only populated if the queue that has
+    /// messages to dequeue is a multi-consumer queue.
     pub consumerName: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiSubscrMessage.consumerName`]
+    /// member, in bytes.
     pub consumerNameLength: u32,
+
+    /// Specifies message id of the message which is available to dequeue, as a
+    /// series of bytes. This value is only populated when the
+    /// [`dpiSubscrMessage.eventType`] member is set to the value
+    /// DPI_EVENT_AQ.
     pub aqMsgId: *const ::std::os::raw::c_void,
+
+    /// Specifies the length of the [`dpiSubscrMessage.aqMsgId`]
+    /// member, in bytes.
     pub aqMsgIdLength: u32,
 }
 #[test]
@@ -2780,10 +4916,28 @@ impl Default for dpiSubscrMessage {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing information on query change notification
+/// events and is part of the [`dpiSubscrMessage`] structure.
 pub struct dpiSubscrMessageQuery {
+
+    /// Specifies the id of the query that was registered as part of the
+    /// subscription that generated this notification.
     pub id: u64,
+
+    /// Specifies the operations that took place on the registered query. It will
+    /// be one or more of the values from the enumeration
+    /// [`dpiOpCode`], OR’ed together.
     pub operation: dpiOpCode,
+
+    /// Specifies a pointer to an array of
+    /// [`dpiSubscrMessageTable`] structures representing
+    /// the list of tables that were modified by the event which generated this
+    /// notification.
     pub tables: *mut dpiSubscrMessageTable,
+
+    /// Specifies the number of structures available in the
+    /// [`dpiSubscrMessageQuery.tables`] member.
     pub numTables: u32,
 }
 #[test]
@@ -2833,9 +4987,22 @@ impl Default for dpiSubscrMessageQuery {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing information on the rows that were changed
+/// and resulted in the notification message of which this structure is a part.
 pub struct dpiSubscrMessageRow {
+
+    /// Specifies the operations that took place on the registered query. It will
+    /// be one or more of the values from the enumeration
+    /// [`dpiOpCode`], OR’ed together.
     pub operation: dpiOpCode,
+
+    /// Specifies the rowid of the row that was changed, in the encoding used for
+    /// CHAR data.
     pub rowid: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiSubscrMessageRow.rowid`] member, in
+    /// bytes.
     pub rowidLength: u32,
 }
 #[test]
@@ -2879,11 +5046,32 @@ impl Default for dpiSubscrMessageRow {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for passing information on the tables that were changed
+/// and resulted in the notification message of which this structure is a part.
 pub struct dpiSubscrMessageTable {
+
+    /// Specifies the operations that took place on the modified table. It will
+    /// be one or more of the values from the enumeration
+    /// [`dpiOpCode`], OR’ed together.
     pub operation: dpiOpCode,
+
+    /// Specifies the name of the table that was changed, in the encoding used for
+    /// CHAR data.
     pub name: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiSubscrMessageRow.name`] member, in
+    /// bytes.
     pub nameLength: u32,
+
+    /// Specifies a pointer to an array of
+    /// [`dpiSubscrMessageRow`] structures representing the
+    /// list of rows that were modified by the event which generated this
+    /// notification.
     pub rows: *mut dpiSubscrMessageRow,
+
+    /// Specifies the number of structures available in the
+    /// [`dpiSubscrMessageTable.rows`] member.
     pub numRows: u32,
 }
 #[test]
@@ -2938,12 +5126,32 @@ impl Default for dpiSubscrMessageTable {
 }
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone)]
+
+/// This structure is used for returning Oracle version information about the
+/// Oracle Client ([`dpiContext_getClientVersion()`]) and Oracle Database
+/// ([`dpiConn_getServerVersion()`]).
 pub struct dpiVersionInfo {
+
+    /// Specifies the major version of the Oracle Client or Database.
     pub versionNum: ::std::os::raw::c_int,
+
+    /// Specifies the release version of the Oracle Client or Database.
     pub releaseNum: ::std::os::raw::c_int,
+
+    /// Specifies the update version of the Oracle Client or Database.
     pub updateNum: ::std::os::raw::c_int,
+
+    /// Specifies the port specific release version of the Oracle Client or
+    /// Database.
     pub portReleaseNum: ::std::os::raw::c_int,
+
+    /// Specifies the port specific update version of the Oracle Client or
+    /// Database.
     pub portUpdateNum: ::std::os::raw::c_int,
+
+    /// Specifies the full version (all five components) as a number that is
+    /// suitable for comparison with the result of the macro
+    /// DPI_ORACLE_VERSION_TO_NUMBER.
     pub fullVersionNum: u32,
 }
 #[test]
@@ -2993,10 +5201,21 @@ fn bindgen_test_layout_dpiVersionInfo() {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
+
+/// This union is used for passing vector dimensions to and from the database
+/// without requiring casts.
 pub union dpiVectorDimensionBuffer {
+
+    /// Raw pointer to dimension buffer.
     pub asPtr: *mut ::std::os::raw::c_void,
+
+    /// Pointer to dimension buffer when vector format is VECTOR_FORMAT_INT8.
     pub asInt8: *mut i8,
+
+    /// Pointer to dimension buffer when vector format is VECTOR_FORMAT_FLOAT32.
     pub asFloat: *mut f32,
+
+    /// Pointer to dimension buffer when vector format is VECTOR_FORMAT_FLOAT64.
     pub asDouble: *mut f64,
 }
 #[test]
@@ -3046,10 +5265,28 @@ impl Default for dpiVectorDimensionBuffer {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
+
+/// This structure is used for providing or receiving information about a vector.
 pub struct dpiVectorInfo {
+
+    /// Specifies the storage format for the vector. It should be one of the values
+    /// from the enumeration [`dpiVectorFormat`].
     pub format: u8,
+
+    /// Specifies the number of dimensions the vector contains.
     pub numDimensions: u32,
+
+    /// Specifies the size (in bytes) of each dimension of the vector. This value
+    /// does not need to be specified on input but is populated on output as a
+    /// convenience.
     pub dimensionSize: u8,
+
+    /// Specifies the buffer for the dimensions. On input the buffer must remain
+    /// valid for the duration of the call into ODPI-C. On output the buffer will
+    /// remain valid as long as the vector object remains valid and the contents of
+    /// the vector are not changed. See the
+    /// [`dpiVectorDimensionBuffer`] union for more
+    /// information.
     pub dimensions: dpiVectorDimensionBuffer,
 }
 #[test]
@@ -3098,11 +5335,30 @@ impl Default for dpiVectorInfo {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+
+/// This structure is used for identifying a TPC (two-phase commit) transaction. It
+/// is used by the TPC functions [`dpiConn_tpcBegin()`],
+/// [`dpiConn_tpcCommit()`], [`dpiConn_tpcEnd()`],
+/// [`dpiConn_tpcForget()`], [`dpiConn_tpcPrepare()`] and
+/// [`dpiConn_tpcRollback()`].
 pub struct dpiXid {
+
+    /// An integer identifying the format the transaction id is expected to take.
+    /// A value of -1 implies that the XID value is NULL.
     pub formatId: ::std::os::raw::c_long,
+
+    /// Specifies the global transaction identifier of the XID.
     pub globalTransactionId: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiXid.globalTransactionId`] member, in
+    /// bytes. The maximum supported length is 64 bytes.
     pub globalTransactionIdLength: u32,
+
+    /// Specifies the branch qualifier of the XID.
     pub branchQualifier: *const ::std::os::raw::c_char,
+
+    /// Specifies the length of the [`dpiXid.branchQualifier`] member, in
+    /// bytes. The maximum supported length is 64 bytes.
     pub branchQualifierLength: u32,
 }
 #[test]
@@ -3151,6 +5407,14 @@ impl Default for dpiXid {
     }
 }
 extern "C" {
+
+    /// Creates a new context for interaction with the library. This is the first
+    /// function that must be called and it must have completed successfully before
+    /// any other functions can be called, including in other threads.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
+    /// If a failure occurs, the errorInfo structure is filled in with error
+    /// information.
     pub fn dpiContext_createWithParams(
         majorVersion: ::std::os::raw::c_uint,
         minorVersion: ::std::os::raw::c_uint,
@@ -3160,60 +5424,126 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Destroys the context that was earlier created with the function
+    /// [`dpiContext_createWithParams()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiContext_destroy(context: *mut dpiContext) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Frees the memory associated with the string list allocated by a call to
+    /// one of the functions [`dpiSodaDb_getCollectionNames()`]
+    /// or [`dpiSodaColl_listIndexes()`]. This function should not be
+    /// called without first calling one of those functions first.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiContext_freeStringList(
         context: *mut dpiContext,
         list: *mut dpiStringList,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Return information about the version of the Oracle Client that is being
+    /// used.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiContext_getClientVersion(
         context: *const dpiContext,
         versionInfo: *mut dpiVersionInfo,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns information for the last error or warning that was raised by the
+    /// library. This function must be called with the same thread that generated
+    /// the error or warning. It must also be called before any other ODPI-C
+    /// library calls are made on the calling thread since the error/warning
+    /// information specific to that thread is cleared at the start of every ODPI-C
+    /// function call.
     pub fn dpiContext_getError(context: *const dpiContext, errorInfo: *mut dpiErrorInfo);
 }
 extern "C" {
+
+    /// Initializes the [`dpiCommonCreateParams`]
+    /// structure to default values.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiContext_initCommonCreateParams(
         context: *const dpiContext,
         params: *mut dpiCommonCreateParams,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Initializes the [`dpiConnCreateParams`] structure
+    /// to default values.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiContext_initConnCreateParams(
         context: *const dpiContext,
         params: *mut dpiConnCreateParams,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Initializes the [`dpiPoolCreateParams`] structure
+    /// to default values.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiContext_initPoolCreateParams(
         context: *const dpiContext,
         params: *mut dpiPoolCreateParams,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Initializes the [`dpiSodaOperOptions`]
+    /// structure to default values.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiContext_initSodaOperOptions(
         context: *const dpiContext,
         options: *mut dpiSodaOperOptions,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Initializes the [`dpiSubscrCreateParams`]
+    /// structure to default values.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiContext_initSubscrCreateParams(
         context: *const dpiContext,
         params: *mut dpiSubscrCreateParams,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the connection. This is intended for situations where a
+    /// reference to the connection needs to be maintained independently of the
+    /// reference returned when the connection was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_addRef(conn: *mut dpiConn) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the current call timeout (in milliseconds) used for round-trips to
+    /// the database made with this connection. A value of 0 means that no timeouts
+    /// will take place. This value can be set using the function
+    /// [`dpiConn_setCallTimeout()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getCallTimeout(conn: *mut dpiConn, value: *mut u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the current schema that is being used by the connection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getCurrentSchema(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3221,6 +5551,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the Oracle Database Domain name associated with the connection.
+    /// This is the same value returned by the SQL expression
+    /// `SELECT value FROM V$PARAMETER WHERE NAME = 'db_domain'`.
+    /// 
+    /// This function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getDbDomain(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3228,6 +5564,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the Oracle Database name associated with the connection. This is
+    /// the same value returned by the SQL expression
+    /// `SELECT NAME FROM V$DATABASE`.
+    /// 
+    /// This function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getDbName(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3235,6 +5577,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the edition that is being used by the connection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getEdition(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3242,12 +5588,24 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the encoding information used by the connection. This will be
+    /// equivalent to the values passed when the standalone connection or session
+    /// pool was created, or the values retrieved from the environment variables
+    /// NLS_LANG and NLS_NCHAR.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getEncodingInfo(
         conn: *mut dpiConn,
         info: *mut dpiEncodingInfo,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the external name that is being used by the connection. This value
+    /// is used when logging distributed transactions.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getExternalName(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3255,15 +5613,29 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the OCI service context handle in use by the connection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getHandle(
         conn: *mut dpiConn,
         handle: *mut *mut ::std::os::raw::c_void,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns information about the connection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getInfo(conn: *mut dpiConn, info: *mut dpiConnInfo) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the Oracle Database instance name associated with the connection.
+    /// This is the same value returned by the SQL expression
+    /// `sys_context('userenv', 'instance_name')`.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getInstanceName(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3271,6 +5643,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the internal name that is being used by the connection. This value
+    /// is used when logging distributed transactions.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getInternalName(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3278,12 +5655,37 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Checks if a connection is usable. Connections may become unusable in
+    /// several cases, such as if the network socket is broken, if an Oracle error
+    /// indicates the connection is unusable or after receiving a planned down
+    /// notification from the database.
+    /// 
+    /// This function is best used before starting a new database request on an
+    /// existing standalone connection. Pooled connections internally perform this
+    /// check before returning a connection to the application.
+    /// 
+    /// Avoid using this function when database requests are in progress.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
+    /// If DPI_FAILURE is returned, the connection should be not be used by the
+    /// application and a new connection should be established instead.
+    /// 
+    /// This function performs a local check. To fully check a connection’s health,
+    /// use [`dpiConn_ping()`].
     pub fn dpiConn_getIsHealthy(
         conn: *mut dpiConn,
         isHealthy: *mut ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the logical transaction id for the connection. This value is used
+    /// in Transaction Guard to determine if the last failed call was completed and
+    /// if the transaction was committed using the procedure call
+    /// dbms_app_cont.get_ltxid_outcome().
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getLTXID(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3291,12 +5693,24 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the maximum number of cursors that can be opened. This is the same
+    /// value returned by the SQL expression
+    /// `SELECT VALUE FROM V$PARAMETER WHERE NAME = 'open_cursors'`.
+    /// 
+    /// This function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getMaxOpenCursors(
         conn: *mut dpiConn,
         maxOpenCursors: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the value of an OCI attribute. This is intended solely for testing
+    /// attributes that are not otherwise supported by ODPI-C and should not be
+    /// used for any other purpose. Use only as directed by Oracle.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getOciAttr(
         conn: *mut dpiConn,
         handleType: u32,
@@ -3306,6 +5720,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the Oracle Database service name associated with the connection.
+    /// This is the same value returned by the SQL expression
+    /// `SELECT SYS_CONTEXT('USERENV', 'SERVICE_NAME') FROM DUAL`.
+    /// 
+    /// This function returns DPI_SCCUESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getServiceName(
         conn: *mut dpiConn,
         value: *mut *const ::std::os::raw::c_char,
@@ -3313,33 +5733,70 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the size of the statement cache, in number of statements.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getStmtCacheSize(
         conn: *mut dpiConn,
         cacheSize: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns whether a transaction is in progress or not.
+    /// 
+    /// This function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_getTransactionInProgress(
         conn: *mut dpiConn,
         txnInProgress: *mut ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a new set of dequeue options, used in dequeuing
+    /// objects from a queue. The reference should be released as soon as it is no
+    /// longer needed. This function is deprecated and will be removed in version
+    /// 4. The function [`dpiQueue_getDeqOptions()`] should be used instead.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_newDeqOptions(
         conn: *mut dpiConn,
         options: *mut *mut dpiDeqOptions,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a new set of enqueue options, used in enqueuing
+    /// objects into a queue. The reference should be released as soon as it is no
+    /// longer needed. This function is deprecated and will be removed in version
+    /// 4. The function [`dpiQueue_getEnqOptions()`] should be used instead.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_newEnqOptions(
         conn: *mut dpiConn,
         options: *mut *mut dpiEnqOptions,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a new JSON object. This object can be used as the
+    /// payload in a message enqueued in a JSON queue, or as the value for a
+    /// variable. The reference should be released by calling
+    /// [`dpiJson_release()`] as soon as it is no longer needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_newJson(conn: *mut dpiConn, json: *mut *mut dpiJson) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a new queue which enqueues and dequeues messages
+    /// from Advanced Queueing (AQ) with a JSON payload. The reference should be
+    /// released by calling [`dpiQueue_release()`] as soon as it is no longer
+    /// needed. For queues with RAW or Database Object payloads, use the method
+    /// [`dpiConn_newQueue()`] instead.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_newJsonQueue(
         conn: *mut dpiConn,
         name: *const ::std::os::raw::c_char,
@@ -3348,12 +5805,25 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a new set of message properties, used in enqueuing
+    /// and dequeuing objects in a queue. The reference should be released as soon
+    /// as it is no longer needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_newMsgProps(
         conn: *mut dpiConn,
         props: *mut *mut dpiMsgProps,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a new queue which may be used to enqueue and dequeue
+    /// messages from Advanced Queuing (AQ) queues. The reference should be
+    /// released by calling [`dpiQueue_release()`] as soon as it is no longer
+    /// needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_newQueue(
         conn: *mut dpiConn,
         name: *const ::std::os::raw::c_char,
@@ -3363,6 +5833,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a new variable which can be used for binding data to
+    /// a statement or providing a buffer for querying data from the database.
+    /// The reference should be released as soon as it is no longer needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_newVar(
         conn: *mut dpiConn,
         oracleTypeNum: dpiOracleTypeNum,
@@ -3377,6 +5853,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a new vector object. This object can be used as the
+    /// value for a variable. The reference should be released by calling
+    /// [`dpiVector_release()`] as soon as it is no longer needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_newVector(
         conn: *mut dpiConn,
         info: *mut dpiVectorInfo,
@@ -3384,6 +5866,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to a statement prepared for execution. The reference
+    /// should be released as soon as it is no longer needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_prepareStmt(
         conn: *mut dpiConn,
         scrollable: ::std::os::raw::c_int,
@@ -3395,6 +5882,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the action attribute on the connection. This is one of the end-to-end
+    /// tracing attributes that can be tracked in database views, shown in audit
+    /// trails and seen in tools such as Enterprise Manager.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setAction(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3402,9 +5895,39 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the call timeout (in milliseconds) to be used for round-trips to the
+    /// database made with this connection. A value of 0 means that no timeouts
+    /// will take place. The current value can be acquired using the function
+    /// [`dpiConn_getCallTimeout()`].
+    /// 
+    /// The call timeout value applies to each database round-trip
+    /// individually, not to the sum of all round-trips. Time spent
+    /// processing in ODPI-C before or after the completion of each
+    /// round-trip is not counted.
+    /// 
+    /// After a timeout is triggered, ODPI-C attempts to clean up the
+    /// internal connection state. The cleanup is allowed to take another
+    /// `value` milliseconds.
+    /// 
+    /// If the cleanup was successful, an exception DPI-1067 will be
+    /// raised but the application can continue to use the connection.
+    /// 
+    /// For small values of call timeout, the connection cleanup may not
+    /// complete successfully within the additional call timeout
+    /// period. In this case an exception ORA-3114 is raised and the
+    /// connection will no longer be usable. It should be closed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setCallTimeout(conn: *mut dpiConn, value: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the client identifier attribute on the connection. This is one of the
+    /// end-to-end tracing attributes that can be tracked in database views, shown
+    /// in audit trails and seen in tools such as Enterprise Manager.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setClientIdentifier(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3412,6 +5935,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the client info attribute on the connection. This is one of the
+    /// end-to-end tracing attributes that can be tracked in database views, shown
+    /// in audit trails and seen in tools such as Enterprise Manager.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setClientInfo(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3419,6 +5948,16 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the current schema to be used on the connection. This has the same
+    /// effect as the SQL statement ALTER SESSION SET CURRENT_SCHEMA. The value
+    /// be changed when the next call requiring a round trip to the server is
+    /// performed. If the new schema name does not exist, the same error is
+    /// returned as when the alter session statement is executed. The new schema
+    /// name is placed before database objects in statement that you execute that
+    /// do not already have a schema.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setCurrentSchema(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3426,6 +5965,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the database operation attribute on the connection. This is one of the
+    /// end-to-end tracing attributes that can be tracked in database views, shown
+    /// in audit trails and seen in tools such as Enterprise Manager.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setDbOp(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3433,6 +5978,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the execution context id attribute on the connection. This is one of
+    /// the end-to-end tracing attributes that can be tracked in database views,
+    /// shown in audit trails and seen in tools such as Enterprise Manager.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setEcontextId(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3440,6 +5991,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the external name that is being used by the connection. This value is
+    /// used when logging distributed transactions.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setExternalName(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3447,6 +6003,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the internal name that is being used by the connection. This value is
+    /// used when logging distributed transactions.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setInternalName(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3454,6 +6015,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the module attribute on the connection. This is one of the end-to-end
+    /// tracing attributes that can be tracked in database views, shown in audit
+    /// trails and seen in tools such as Enterprise Manager.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setModule(
         conn: *mut dpiConn,
         value: *const ::std::os::raw::c_char,
@@ -3461,6 +6028,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the value of an OCI attribute. This is intended solely for testing
+    /// attributes that are not otherwise supported by ODPI-C and should not be
+    /// used for any other purpose. Use only as directed by Oracle.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setOciAttr(
         conn: *mut dpiConn,
         handleType: u32,
@@ -3470,72 +6043,135 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the size of the statement cache.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiConn_setStmtCacheSize(conn: *mut dpiConn, cacheSize: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_BOOLEAN.
     pub fn dpiData_getBool(data: *mut dpiData) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a pointer to the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_BYTES.
     pub fn dpiData_getBytes(data: *mut dpiData) -> *mut dpiBytes;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_DOUBLE.
     pub fn dpiData_getDouble(data: *mut dpiData) -> f64;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_FLOAT.
     pub fn dpiData_getFloat(data: *mut dpiData) -> f32;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_INT64.
     pub fn dpiData_getInt64(data: *mut dpiData) -> i64;
 }
 extern "C" {
+
+    /// Returns a pointer to the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_INTERVAL_DS.
     pub fn dpiData_getIntervalDS(data: *mut dpiData) -> *mut dpiIntervalDS;
 }
 extern "C" {
+
+    /// Returns a pointer to the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_INTERVAL_YM.
     pub fn dpiData_getIntervalYM(data: *mut dpiData) -> *mut dpiIntervalYM;
 }
 extern "C" {
+
+    /// Returns whether the data refers to a null value (1) or not (0).
     pub fn dpiData_getIsNull(data: *mut dpiData) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is DPI_NATIVE_TYPE_JSON.
     pub fn dpiData_getJson(data: *mut dpiData) -> *mut dpiJson;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_JSON_ARRAY.
     pub fn dpiData_getJsonArray(data: *mut dpiData) -> *mut dpiJsonArray;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_JSON_OBJECT.
     pub fn dpiData_getJsonObject(data: *mut dpiData) -> *mut dpiJsonObject;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is DPI_NATIVE_TYPE_LOB.
     pub fn dpiData_getLOB(data: *mut dpiData) -> *mut dpiLob;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_OBJECT.
     pub fn dpiData_getObject(data: *mut dpiData) -> *mut dpiObject;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is DPI_NATIVE_TYPE_STMT.
     pub fn dpiData_getStmt(data: *mut dpiData) -> *mut dpiStmt;
 }
 extern "C" {
+
+    /// Returns a pointer to the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_TIMESTAMP.
     pub fn dpiData_getTimestamp(data: *mut dpiData) -> *mut dpiTimestamp;
 }
 extern "C" {
+
+    /// Returns the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_UINT64.
     pub fn dpiData_getUint64(data: *mut dpiData) -> u64;
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_BOOLEAN.
     pub fn dpiData_setBool(data: *mut dpiData, value: ::std::os::raw::c_int);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_BYTES.
+    /// Do *not* use this function when setting data for variables. Instead, use
+    /// the function [`dpiVar_setFromBytes()`].
     pub fn dpiData_setBytes(data: *mut dpiData, ptr: *mut ::std::os::raw::c_char, length: u32);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_DOUBLE.
     pub fn dpiData_setDouble(data: *mut dpiData, value: f64);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_FLOAT.
     pub fn dpiData_setFloat(data: *mut dpiData, value: f32);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_INT64.
     pub fn dpiData_setInt64(data: *mut dpiData, value: i64);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_INTERVAL_DS.
     pub fn dpiData_setIntervalDS(
         data: *mut dpiData,
         days: i32,
@@ -3546,21 +6182,41 @@ extern "C" {
     );
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_INTERVAL_YM.
     pub fn dpiData_setIntervalYM(data: *mut dpiData, years: i32, months: i32);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_LOB.
+    /// Do *not* use this function when setting data for variables. Instead, use
+    /// the function [`dpiVar_setFromLob()`].
     pub fn dpiData_setLOB(data: *mut dpiData, lob: *mut dpiLob);
 }
 extern "C" {
+
+    /// Sets the value of the data to be the null value.
     pub fn dpiData_setNull(data: *mut dpiData);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_OBJECT.
+    /// Do *not* use this function when setting data for variables. Instead, use
+    /// the function [`dpiVar_setFromObject()`].
     pub fn dpiData_setObject(data: *mut dpiData, obj: *mut dpiObject);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_STMT.
+    /// Do *not* use this function when setting data for variables. Instead, use
+    /// the function [`dpiVar_setFromStmt()`].
     pub fn dpiData_setStmt(data: *mut dpiData, stmt: *mut dpiStmt);
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is
+    /// DPI_NATIVE_TYPE_TIMESTAMP.
     pub fn dpiData_setTimestamp(
         data: *mut dpiData,
         year: i16,
@@ -3575,12 +6231,26 @@ extern "C" {
     );
 }
 extern "C" {
+
+    /// Sets the value of the data when the native type is DPI_NATIVE_TYPE_UINT64.
     pub fn dpiData_setUint64(data: *mut dpiData, value: u64);
 }
 extern "C" {
+
+    /// Adds a reference to the dequeue options. This is intended for situations
+    /// where a reference to the dequeue options needs to be maintained
+    /// independently of the reference returned when the handle was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_addRef(options: *mut dpiDeqOptions) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the condition that must be satisfied in order for a message to be
+    /// dequeued. See function [`dpiDeqOptions_setCondition()`] for more
+    /// information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getCondition(
         options: *mut dpiDeqOptions,
         value: *mut *const ::std::os::raw::c_char,
@@ -3588,6 +6258,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the name of the consumer that is dequeuing messages. See function
+    /// [`dpiDeqOptions_setConsumerName()`] for more information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getConsumerName(
         options: *mut dpiDeqOptions,
         value: *mut *const ::std::os::raw::c_char,
@@ -3595,6 +6270,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the correlation of the message to be dequeued. See function
+    /// [`dpiDeqOptions_setCorrelation()`] for more information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getCorrelation(
         options: *mut dpiDeqOptions,
         value: *mut *const ::std::os::raw::c_char,
@@ -3602,12 +6282,20 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the mode that is to be used when dequeuing messages.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getMode(
         options: *mut dpiDeqOptions,
         value: *mut dpiDeqMode,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the identifier of the specific message that is to be dequeued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getMsgId(
         options: *mut dpiDeqOptions,
         value: *mut *const ::std::os::raw::c_char,
@@ -3615,12 +6303,21 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the position of the message that is to be dequeued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getNavigation(
         options: *mut dpiDeqOptions,
         value: *mut dpiDeqNavigation,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the transformation of the message to be dequeued. See function
+    /// [`dpiDeqOptions_setTransformation()`] for more information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getTransformation(
         options: *mut dpiDeqOptions,
         value: *mut *const ::std::os::raw::c_char,
@@ -3628,18 +6325,38 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns whether the message being dequeued is part of the current
+    /// transaction or constitutes a transaction on its own.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getVisibility(
         options: *mut dpiDeqOptions,
         value: *mut dpiVisibility,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the time to wait, in seconds, for a message matching the search
+    /// criteria. See function [`dpiDeqOptions_setWait()`] for more
+    /// information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_getWait(
         options: *mut dpiDeqOptions,
         value: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the condition which must be true for messages to be dequeued. The
+    /// condition must be a valid boolean expression similar to the where clause
+    /// of a SQL query. The expression can include conditions on message
+    /// properties, user data properties and PL/SQL or SQL functions. User data
+    /// properties must be prefixed with tab.user_data as a qualifier to indicate
+    /// the specific column of the queue table that stores the message payload.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setCondition(
         options: *mut dpiDeqOptions,
         value: *const ::std::os::raw::c_char,
@@ -3647,6 +6364,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the name of the consumer which will be dequeuing messages. This value
+    /// should only be set if the queue is set up for multiple consumers.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setConsumerName(
         options: *mut dpiDeqOptions,
         value: *const ::std::os::raw::c_char,
@@ -3654,6 +6376,13 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the correlation of the message to be dequeued. Special pattern
+    /// matching characters such as the percent sign (%) and the underscore (_)
+    /// can be used. If multiple messages satisfy the pattern, the order of
+    /// dequeuing is undetermined.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setCorrelation(
         options: *mut dpiDeqOptions,
         value: *const ::std::os::raw::c_char,
@@ -3661,18 +6390,30 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the message delivery mode that is to be used when dequeuing messages.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setDeliveryMode(
         options: *mut dpiDeqOptions,
         value: dpiMessageDeliveryMode,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the mode that is to be used when dequeuing messages.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setMode(
         options: *mut dpiDeqOptions,
         value: dpiDeqMode,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the identifier of the specific message to be dequeued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setMsgId(
         options: *mut dpiDeqOptions,
         value: *const ::std::os::raw::c_char,
@@ -3680,12 +6421,22 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the position in the queue of the message that is to be dequeued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setNavigation(
         options: *mut dpiDeqOptions,
         value: dpiDeqNavigation,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the transformation of the message to be dequeued. The transformation
+    /// is applied after the message is dequeued but before it is returned to the
+    /// application. It must be created using DBMS_TRANSFORM.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setTransformation(
         options: *mut dpiDeqOptions,
         value: *const ::std::os::raw::c_char,
@@ -3693,18 +6444,39 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets whether the message being dequeued is part of the current transaction
+    /// or constitutes a transaction on its own.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setVisibility(
         options: *mut dpiDeqOptions,
         value: dpiVisibility,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Set the time to wait, in seconds, for a message matching the search
+    /// criteria.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiDeqOptions_setWait(options: *mut dpiDeqOptions, value: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the enqueue options. This is intended for situations
+    /// where a reference to the enqueue options needs to be maintained
+    /// independently of the reference returned when the handle was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiEnqOptions_addRef(options: *mut dpiEnqOptions) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the transformation of the message to be enqueued. See function
+    /// [`dpiEnqOptions_setTransformation()`] for more information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiEnqOptions_getTransformation(
         options: *mut dpiEnqOptions,
         value: *mut *const ::std::os::raw::c_char,
@@ -3712,18 +6484,33 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns whether the message being enqueued is part of the current
+    /// transaction or constitutes a transaction on its own.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiEnqOptions_getVisibility(
         options: *mut dpiEnqOptions,
         value: *mut dpiVisibility,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the message delivery mode that is to be used when enqueuing messages.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiEnqOptions_setDeliveryMode(
         options: *mut dpiEnqOptions,
         value: dpiMessageDeliveryMode,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the transformation of the message to be enqueued. The transformation
+    /// is applied after the message is enqueued but before it is returned to the
+    /// application. It must be created using DBMS_TRANSFORM.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiEnqOptions_setTransformation(
         options: *mut dpiEnqOptions,
         value: *const ::std::os::raw::c_char,
@@ -3731,15 +6518,30 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets whether the message being enqueued is part of the current transaction
+    /// or constitutes a transaction on its own.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiEnqOptions_setVisibility(
         options: *mut dpiEnqOptions,
         value: dpiVisibility,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the JSON value. This is intended for situations where a
+    /// reference to the JSON value needs to be maintained independently of the
+    /// reference returned when the JSON value was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiJson_addRef(json: *mut dpiJson) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the JSON value from the JSON string passed as a byte string.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiJson_setFromText(
         json: *mut dpiJson,
         value: *const ::std::os::raw::c_char,
@@ -3748,13 +6550,30 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the JSON value to the data found in the hierarchy of nodes pointed to
+    /// by the top level node.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiJson_setValue(json: *mut dpiJson, topNode: *mut dpiJsonNode)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the LOB. This is intended for situations where a
+    /// reference to the LOB needs to be maintained independently of the reference
+    /// returned when the LOB was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiLob_addRef(lob: *mut dpiLob) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the size of the buffer needed to hold the number of characters
+    /// specified for a buffer of the type associated with the LOB. If the LOB does
+    /// not refer to a character LOB the value is returned unchanged.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiLob_getBufferSize(
         lob: *mut dpiLob,
         sizeInChars: u64,
@@ -3762,6 +6581,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the directory alias name and file name for a BFILE type LOB.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiLob_getDirectoryAndFileName(
         lob: *mut dpiLob,
         directoryAlias: *mut *const ::std::os::raw::c_char,
@@ -3771,9 +6594,17 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the type of the LOB.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiLob_getType(lob: *mut dpiLob, type_: *mut dpiOracleTypeNum) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the directory alias name and file name for a BFILE type LOB.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiLob_setDirectoryAndFileName(
         lob: *mut dpiLob,
         directoryAlias: *const ::std::os::raw::c_char,
@@ -3783,15 +6614,30 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the message properties. This is intended for situations
+    /// where a reference to the message properties needs to be maintained
+    /// independently of the reference returned when the handle was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_addRef(props: *mut dpiMsgProps) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of attempts that have been made to dequeue a message.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getNumAttempts(
         props: *mut dpiMsgProps,
         value: *mut i32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the correlation supplied by the producer when the message was
+    /// enqueued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getCorrelation(
         props: *mut dpiMsgProps,
         value: *mut *const ::std::os::raw::c_char,
@@ -3799,21 +6645,39 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of seconds the enqueued message will be delayed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getDelay(props: *mut dpiMsgProps, value: *mut i32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the mode that was used to deliver the message.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getDeliveryMode(
         props: *mut dpiMsgProps,
         value: *mut dpiMessageDeliveryMode,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the time that the message was enqueued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getEnqTime(
         props: *mut dpiMsgProps,
         value: *mut dpiTimestamp,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the name of the queue to which the message is moved if it cannot be
+    /// processed successfully. See function [`dpiMsgProps_setExceptionQ()`]
+    /// for more information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getExceptionQ(
         props: *mut dpiMsgProps,
         value: *mut *const ::std::os::raw::c_char,
@@ -3821,12 +6685,22 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of seconds the message is available to be dequeued.
+    /// See function [`dpiMsgProps_setExpiration()`] for more information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getExpiration(
         props: *mut dpiMsgProps,
         value: *mut i32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the id of the message in the queue that generated this message. No
+    /// value is available until the message has been enqueued or dequeued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getMsgId(
         props: *mut dpiMsgProps,
         value: *mut *const ::std::os::raw::c_char,
@@ -3834,6 +6708,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the id of the message in the last queue that generated this
+    /// message. See function [`dpiMsgProps_setOriginalMsgId()`] for more
+    /// information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getOriginalMsgId(
         props: *mut dpiMsgProps,
         value: *mut *const ::std::os::raw::c_char,
@@ -3841,6 +6721,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the payload associated with the message properties. The payload can
+    /// either be an object or an arbitrary series of bytes and is available after
+    /// a call to [`dpiQueue_deqOne()`] or [`dpiQueue_deqMany()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getPayload(
         props: *mut dpiMsgProps,
         obj: *mut *mut dpiObject,
@@ -3849,24 +6735,47 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the payload associated with the message properties, The payload
+    /// must be a JSON object and is available after the call to
+    /// [`dpiQueue_deqOne()`] or [`dpiQueue_deqMany()`]; otherwise, the
+    /// value NULL will be returned.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getPayloadJson(
         props: *mut dpiMsgProps,
         json: *mut *mut dpiJson,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the priority assigned to the message. See function
+    /// [`dpiMsgProps_setPriority()`] for more information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getPriority(
         props: *mut dpiMsgProps,
         value: *mut i32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the state of the message at the time of dequeue.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_getState(
         props: *mut dpiMsgProps,
         value: *mut dpiMessageState,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the correlation of the message to be dequeued. Special pattern
+    /// matching characters such as the percent sign (%) and the underscore (_)
+    /// can be used. If multiple messages satisfy the pattern, the order of
+    /// dequeuing is undetermined.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setCorrelation(
         props: *mut dpiMsgProps,
         value: *const ::std::os::raw::c_char,
@@ -3874,9 +6783,26 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the number of seconds to delay the message before it can be dequeued.
+    /// Messages enqueued with a delay are put into the DPI_MSG_STATE_WAITING
+    /// state. When the delay expires the message is put into the
+    /// DPI_MSG_STATE_READY state. Dequeuing directly by message id overrides this
+    /// delay specification. Note that delay processing requires the queue monitor
+    /// to be started.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setDelay(props: *mut dpiMsgProps, value: i32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the name of the queue to which the message is moved if it cannot be
+    /// processed successfully. Messages are moved if the number of unsuccessful
+    /// dequeue attempts has reached the maximum allowed number or if the message
+    /// has expired. All messages in the exception queue are in the
+    /// DPI_MSG_STATE_EXPIRED state.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setExceptionQ(
         props: *mut dpiMsgProps,
         value: *const ::std::os::raw::c_char,
@@ -3884,9 +6810,22 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the number of seconds the message is available to be dequeued. This
+    /// value is an offset from the delay. Expiration processing requires the queue
+    /// monitor to be running. Until this time elapses, the messages are in the
+    /// queue in the state DPI_MSG_STATE_READY. After this time elapses messages
+    /// are moved to the exception queue in the DPI_MSG_STATE_EXPIRED state.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setExpiration(props: *mut dpiMsgProps, value: i32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the id of the message in the last queue that generated this
+    /// message.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setOriginalMsgId(
         props: *mut dpiMsgProps,
         value: *const ::std::os::raw::c_char,
@@ -3894,6 +6833,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the payload for the message as a series of bytes. This value will be
+    /// used when the message is enqueued using [`dpiQueue_enqOne()`] or
+    /// [`dpiQueue_enqMany()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setPayloadBytes(
         props: *mut dpiMsgProps,
         value: *const ::std::os::raw::c_char,
@@ -3901,21 +6846,43 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the payload for the message as a JSON object. This value will be used
+    /// when the message is enqueued using [`dpiQueue_enqOne()`] or
+    /// [`dpiQueue_enqMany()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setPayloadJson(
         props: *mut dpiMsgProps,
         json: *mut dpiJson,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the payload for the message as an object. This value will be used when
+    /// the message is enqueued using [`dpiQueue_enqOne()`] or
+    /// [`dpiQueue_enqMany()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setPayloadObject(
         props: *mut dpiMsgProps,
         obj: *mut dpiObject,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the priority assigned to the message. A smaller number indicates a
+    /// higher priority. The priority can be any number, including negative
+    /// numbers.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setPriority(props: *mut dpiMsgProps, value: i32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets recipients list for the message to be enqueued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiMsgProps_setRecipients(
         props: *mut dpiMsgProps,
         recipients: *mut dpiMsgRecipient,
@@ -3923,9 +6890,19 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the object. This is intended for situations where a
+    /// reference to the object needs to be maintained independently of the
+    /// reference returned when the object was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_addRef(obj: *mut dpiObject) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Appends an element with the specified value to the collection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_appendElement(
         obj: *mut dpiObject,
         nativeTypeNum: dpiNativeTypeNum,
@@ -3933,16 +6910,32 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Creates an independent copy of an object and returns a reference to the
+    /// newly created object. This reference should be released as soon as it is
+    /// no longer needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_copy(
         obj: *mut dpiObject,
         copiedObj: *mut *mut dpiObject,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Deletes an element from the collection. Note that the position ordinals of
+    /// the remaining elements are not changed. The delete operation creates
+    /// *holes* in the collection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_deleteElementByIndex(obj: *mut dpiObject, index: i32)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the value of one of the object’s attributes.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_getAttributeValue(
         obj: *mut dpiObject,
         attr: *mut dpiObjectAttr,
@@ -3951,6 +6944,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns whether an element exists at the specified index.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_getElementExistsByIndex(
         obj: *mut dpiObject,
         index: i32,
@@ -3958,6 +6955,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the value of the element found at the specified index.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_getElementValueByIndex(
         obj: *mut dpiObject,
         index: i32,
@@ -3966,6 +6967,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the first index used in a collection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_getFirstIndex(
         obj: *mut dpiObject,
         index: *mut i32,
@@ -3973,6 +6978,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the last index used in a collection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_getLastIndex(
         obj: *mut dpiObject,
         index: *mut i32,
@@ -3980,6 +6989,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the next index used in a collection following the specified index.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_getNextIndex(
         obj: *mut dpiObject,
         index: i32,
@@ -3988,6 +7001,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the previous index used in a collection preceding the specified
+    /// index.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_getPrevIndex(
         obj: *mut dpiObject,
         index: i32,
@@ -3996,9 +7014,17 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of elements in a collection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_getSize(obj: *mut dpiObject, size: *mut i32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the value of one of the object’s attributes.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_setAttributeValue(
         obj: *mut dpiObject,
         attr: *mut dpiObjectAttr,
@@ -4007,6 +7033,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the value of the element found at the specified index.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_setElementValueByIndex(
         obj: *mut dpiObject,
         index: i32,
@@ -4015,27 +7045,56 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Trims a number of elements from the end of a collection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObject_trim(obj: *mut dpiObject, numToTrim: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the attribute. This is intended for situations where a
+    /// reference to the attribute needs to be maintained independently of the
+    /// reference returned when the attribute was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObjectAttr_addRef(attr: *mut dpiObjectAttr) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns information about the attribute.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObjectAttr_getInfo(
         attr: *mut dpiObjectAttr,
         info: *mut dpiObjectAttrInfo,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the object type. This is intended for situations where
+    /// a reference to the object type needs to be maintained independently of the
+    /// reference returned when the object type was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObjectType_addRef(objType: *mut dpiObjectType) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Creates an object of the specified type and returns a reference to it.
+    /// This reference should be released as soon as it is no longer needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObjectType_createObject(
         objType: *mut dpiObjectType,
         obj: *mut *mut dpiObject,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the list of attributes that belong to the object type.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObjectType_getAttributes(
         objType: *mut dpiObjectType,
         numAttributes: u16,
@@ -4043,123 +7102,282 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns information about the object type.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiObjectType_getInfo(
         objType: *mut dpiObjectType,
         info: *mut dpiObjectTypeInfo,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the pool. This is intended for situations where a
+    /// reference to the pool needs to be maintained independently of the reference
+    /// returned when the pool was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_addRef(pool: *mut dpiPool) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of sessions in the pool that are busy.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getBusyCount(pool: *mut dpiPool, value: *mut u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the encoding information used by the pool. This will be equivalent
+    /// to the values passed when the pool was created, or the values retrieved
+    /// from the environment variables NLS_LANG and NLS_NCHAR.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getEncodingInfo(
         pool: *mut dpiPool,
         info: *mut dpiEncodingInfo,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the mode used for acquiring or getting connections from the pool.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getGetMode(
         pool: *mut dpiPool,
         value: *mut dpiPoolGetMode,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the maximum lifetime a pooled session may exist, in seconds.
+    /// Sessions in use will not be closed. They become candidates for termination
+    /// only when they are released back to the pool and have existed for longer
+    /// then the returned value. Note that termination only occurs when the pool is
+    /// accessed. The value 0 means that there is no maximum length of time that a
+    /// pooled session may exist.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getMaxLifetimeSession(
         pool: *mut dpiPool,
         value: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the maximum sessions per shard. This parameter is used for
+    /// balancing shards.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getMaxSessionsPerShard(
         pool: *mut dpiPool,
         value: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of sessions in the pool that are open.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getOpenCount(pool: *mut dpiPool, value: *mut u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns whether or not the SODA metadata cache is enabled or not.
+    /// 
+    /// The SODA metadata cache requires Oracle Client 21.3, or later. It is also
+    /// available in Oracle Client 19 from 19.11.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getSodaMetadataCache(
         pool: *mut dpiPool,
         enabled: *mut ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the default size of the statement cache for sessions in the pool,
+    /// in number of statements.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getStmtCacheSize(
         pool: *mut dpiPool,
         cacheSize: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the length of time (in seconds) after which idle sessions in the
+    /// pool are terminated. Note that termination only occurs when the pool is
+    /// accessed. A value of 0 means that no ide sessions are terminated.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getTimeout(pool: *mut dpiPool, value: *mut u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the amount of time (in milliseconds) that the caller will wait for
+    /// a session to become available in the pool before returning an error.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_getWaitTimeout(pool: *mut dpiPool, value: *mut u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the ping interval duration (in seconds), which is used to check the
+    /// healthiness of idle connections before getting checked out. A negative
+    /// value indicates this check is disabled.
     pub fn dpiPool_getPingInterval(
         pool: *mut dpiPool,
         value: *mut ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// The function is used to manually set the token and private key for a
+    /// session pool. After pool creation it can be used to periodically reset
+    /// the token and private key to avoid the need for the pool token callback
+    /// function
+    /// [`dpiPoolCreateParams.accessTokenCallback`] to
+    /// be called during pool growth.
+    /// 
+    /// This function may also be useful for testing. By setting an expired token
+    /// and key the subsequent pool callback function behavior can be seen without
+    /// waiting for normal token expiry.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setAccessToken(
         pool: *mut dpiPool,
         params: *mut dpiAccessToken,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the mode used for acquiring or getting connections from the pool.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setGetMode(pool: *mut dpiPool, value: dpiPoolGetMode) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the maximum lifetime a pooled session may exist, in seconds. Sessions
+    /// in use will not be closed. They become candidates for termination only when
+    /// they are released back to the pool and have existed for longer then the
+    /// specified value. Note that termination only occurs when the pool is
+    /// accessed. The value 0 means that there is no maximum length of time that a
+    /// pooled session may exist.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setMaxLifetimeSession(pool: *mut dpiPool, value: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the maximum number of sessions per shard.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setMaxSessionsPerShard(pool: *mut dpiPool, value: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets whether the SODA metadata cache is enabled or not. Enabling the SODA
+    /// metadata cache can significantly improve the performance of repeated calls
+    /// to methods [`dpiSodaDb_createCollection()`] (when not specifying a
+    /// value for the metadata parameter) and [`dpiSodaDb_openCollection()`].
+    /// Note that the cache can become out of date if changes to the metadata of
+    /// cached collections are made externally.
+    /// 
+    /// The SODA metadata cache requires Oracle Client 21.3, or later. It is also
+    /// available in Oracle Client 19 from 19.11.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setSodaMetadataCache(
         pool: *mut dpiPool,
         enabled: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the default size of the statement cache for sessions in the pool.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setStmtCacheSize(pool: *mut dpiPool, cacheSize: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the amount of time (in seconds) after which idle sessions in the
+    /// pool are terminated. Note that termination only occurs when the pool is
+    /// accessed. A value of zero will result in no idle sessions being terminated.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setTimeout(pool: *mut dpiPool, value: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the amount of time (in milliseconds) that the caller should wait for a
+    /// session to be available in the pool before returning with an error.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setWaitTimeout(pool: *mut dpiPool, value: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the ping interval duration (in seconds) which is used to to check for
+    /// healthiness of sessions. If this time has passed since the last time the
+    /// session was checked out a ping will be performed. A negative value will
+    /// disable this check.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiPool_setPingInterval(
         pool: *mut dpiPool,
         value: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the queue. This is intended for situations where a
+    /// reference to the queue needs to be maintained independently of the
+    /// reference returned when the queue was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiQueue_addRef(queue: *mut dpiQueue) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to the dequeue options associated with the queue. These
+    /// options affect how messages are dequeued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiQueue_getDeqOptions(
         queue: *mut dpiQueue,
         options: *mut *mut dpiDeqOptions,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a reference to the enqueue options associated with the queue. These
+    /// options affect how messages are enqueued.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiQueue_getEnqOptions(
         queue: *mut dpiQueue,
         options: *mut *mut dpiEnqOptions,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the SODA collection. This is intended for situations
+    /// where a reference to the collection needs to be maintained independently of
+    /// the reference returned when the collection was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaColl_addRef(coll: *mut dpiSodaColl) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the metadata for the collection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaColl_getMetadata(
         coll: *mut dpiSodaColl,
         value: *mut *const ::std::os::raw::c_char,
@@ -4167,6 +7385,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the name of the collection.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaColl_getName(
         coll: *mut dpiSodaColl,
         value: *mut *const ::std::os::raw::c_char,
@@ -4174,15 +7396,38 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the SODA collection cursor. This is intended for
+    /// situations where a reference to the cursor needs to be maintained
+    /// independently of the reference returned when the cursor was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaCollCursor_addRef(cursor: *mut dpiSodaCollCursor) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Closes the cursor and makes it unusable for further work immediately,
+    /// rather than when the reference count reaches zero.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaCollCursor_close(cursor: *mut dpiSodaCollCursor) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the SODA database. This is intended for situations
+    /// where a reference to the SODA database needs to be maintained independently
+    /// of the reference returned when the database was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDb_addRef(db: *mut dpiSodaDb) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Creates a SODA document that can later be inserted into a collection or
+    /// used to replace an existing document in a collection. This method should be
+    /// used when the content is binary or encoded text.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDb_createDocument(
         db: *mut dpiSodaDb,
         key: *const ::std::os::raw::c_char,
@@ -4196,6 +7441,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Creates a SODA document that can later be inserted into a collection or
+    /// used to replace an existing document in a collection. This method should be
+    /// used when the content is JSON and Oracle Client 23 or higher is being used.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDb_createJsonDocument(
         db: *mut dpiSodaDb,
         key: *const ::std::os::raw::c_char,
@@ -4212,9 +7463,21 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the SODA document. This is intended for situations
+    /// where a reference to the document needs to be maintained independently of
+    /// the reference returned when the document was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_addRef(cursor: *mut dpiSodaDoc) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the content of the document. If the document contains JSON an
+    /// exception will be thrown. Use [`dpiSodaDoc_getIsJson()`] to determine
+    /// whether to call this function or [`dpiSodaDoc_getJsonContent()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_getContent(
         doc: *mut dpiSodaDoc,
         value: *mut *const ::std::os::raw::c_char,
@@ -4223,6 +7486,14 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the timestamp when the document was created, as a string, in ISO
+    /// format. This value will be empty if the metadata used to create the
+    /// collection in which the document is found does not support the storage of
+    /// this attribute, or if the document was created using
+    /// [`dpiSodaDb_createDocument()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_getCreatedOn(
         doc: *mut dpiSodaDoc,
         value: *mut *const ::std::os::raw::c_char,
@@ -4230,18 +7501,37 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a boolean value indicating if the document contains JSON or not.
+    /// This method should be used to determine if [`dpiSodaDoc_getContent()`]
+    /// or [`dpiSodaDoc_getJsonContent()`] should be called to get the content
+    /// of the document.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_getIsJson(
         doc: *mut dpiSodaDoc,
         isJson: *mut ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the content of the document. If the document does not contain JSON
+    /// an exception will be thrown. Use [`dpiSodaDoc_getIsJson()`] to
+    /// determine whether to call this function or [`dpiSodaDoc_getContent()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_getJsonContent(
         doc: *mut dpiSodaDoc,
         value: *mut *mut dpiJson,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the key that uniquely identifies the document in the collection.
+    /// This value will be empty if no key was supplied when the document was
+    /// created using [`dpiSodaDb_createDocument()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_getKey(
         doc: *mut dpiSodaDoc,
         value: *mut *const ::std::os::raw::c_char,
@@ -4249,6 +7539,14 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the timestamp when the document was last modified, as a string, in
+    /// ISO format. This value will be empty if the metadata used to create the
+    /// collection in which the document is found does not support the storage of
+    /// this attribute, or if the document was created using
+    /// [`dpiSodaDb_createDocument()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_getLastModified(
         doc: *mut dpiSodaDoc,
         value: *mut *const ::std::os::raw::c_char,
@@ -4256,6 +7554,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the media type of the document.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_getMediaType(
         doc: *mut dpiSodaDoc,
         value: *mut *const ::std::os::raw::c_char,
@@ -4263,6 +7565,13 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the current version of the document. This value will be empty if
+    /// the metadata used to create the collection in which the document is found
+    /// does not support the storage of this attribute, or if the document was
+    /// created using [`dpiSodaDb_createDocument()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDoc_getVersion(
         doc: *mut dpiSodaDoc,
         value: *mut *const ::std::os::raw::c_char,
@@ -4270,15 +7579,38 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the SODA document cursor. This is intended for
+    /// situations where a reference to the cursor needs to be maintained
+    /// independently of the reference returned when the cursor was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDocCursor_addRef(cursor: *mut dpiSodaDocCursor) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Closes the cursor and makes it unusable for further work immediately,
+    /// rather than when the reference count reaches zero.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSodaDocCursor_close(cursor: *mut dpiSodaDocCursor) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the statement. This is intended for situations where a
+    /// reference to the statement needs to be maintained independently of the
+    /// reference returned when the statement was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_addRef(stmt: *mut dpiStmt) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Binds a variable to a named placeholder in the statement. A reference to
+    /// the variable is retained by the library and is released when the statement
+    /// itself is released or a new variable is bound to the same name.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_bindByName(
         stmt: *mut dpiStmt,
         name: *const ::std::os::raw::c_char,
@@ -4287,6 +7619,13 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Binds a variable to a placeholder in the statement by position. A reference
+    /// to the variable is retained by the library and is released when the
+    /// statement itself is released or a new variable is bound to the same
+    /// position.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_bindByPos(
         stmt: *mut dpiStmt,
         pos: u32,
@@ -4294,6 +7633,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Binds a value to a named placeholder in the statement without the need to
+    /// create a variable directly. One is created implicitly and released when the
+    /// statement is released or a new value is bound to the same name.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_bindValueByName(
         stmt: *mut dpiStmt,
         name: *const ::std::os::raw::c_char,
@@ -4303,6 +7648,12 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Binds a value to a placeholder in the statement without the need to create
+    /// a variable directly. One is created implicitly and released when the
+    /// statement is released or a new value is bound to the same position.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_bindValueByPos(
         stmt: *mut dpiStmt,
         pos: u32,
@@ -4311,6 +7662,11 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Closes the statement and makes it unusable for further work immediately,
+    /// rather than when the reference count reaches zero.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_close(
         stmt: *mut dpiStmt,
         tag: *const ::std::os::raw::c_char,
@@ -4318,9 +7674,23 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Defines the variable that will be used to fetch rows from the statement. A
+    /// reference to the variable will be retained until the next define is
+    /// performed on the same position or the statement is closed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_define(stmt: *mut dpiStmt, pos: u32, var: *mut dpiVar) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Defines the type of data that will be used to fetch rows from the
+    /// statement. This is intended for use with the function
+    /// [`dpiStmt_getQueryValue()`], when the default data type derived from
+    /// the column metadata needs to be overridden by the application. Internally,
+    /// a variable is created with the specified data type and size.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_defineValue(
         stmt: *mut dpiStmt,
         pos: u32,
@@ -4332,10 +7702,22 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of batch errors that took place during the last
+    /// execution with batch mode enabled. Batch errors are only available when
+    /// both the client and the server are at 12.1.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getBatchErrorCount(stmt: *mut dpiStmt, count: *mut u32)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the batch errors that took place during the last execution with
+    /// batch mode enabled. Batch errors are only available when both the client
+    /// and the server are at 12.1.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getBatchErrors(
         stmt: *mut dpiStmt,
         numErrors: u32,
@@ -4343,9 +7725,19 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of bind variables in the prepared statement. In SQL
+    /// statements this is the total number of bind variables whereas in PL/SQL
+    /// statements this is the count of the **unique** bind variables.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getBindCount(stmt: *mut dpiStmt, count: *mut u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the names of the unique bind variables in the prepared statement.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getBindNames(
         stmt: *mut dpiStmt,
         numBindNames: *mut u32,
@@ -4354,33 +7746,61 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Gets the array size used for performing fetches.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getFetchArraySize(
         stmt: *mut dpiStmt,
         arraySize: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the next implicit result available from the last execution of the
+    /// statement. Implicit results are only available when both the client and
+    /// server are 12.1 or higher.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getImplicitResult(
         stmt: *mut dpiStmt,
         implicitResult: *mut *mut dpiStmt,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns information about the statement.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getInfo(stmt: *mut dpiStmt, info: *mut dpiStmtInfo) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the rowid of the last row that was affected by the statement.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getLastRowid(
         stmt: *mut dpiStmt,
         rowid: *mut *mut dpiRowid,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of columns that are being queried.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getNumQueryColumns(
         stmt: *mut dpiStmt,
         numQueryColumns: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the value of an OCI attribute. This is intended solely for testing
+    /// attributes that are not otherwise supported by ODPI-C and should not be
+    /// used for any other purpose. Use only as directed by Oracle.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getOciAttr(
         stmt: *mut dpiStmt,
         attribute: u32,
@@ -4389,9 +7809,20 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Gets the number of rows that will be prefetched by the Oracle Client
+    /// library when a query is executed.
+    /// 
+    /// The value may be changed by calling [`dpiStmt_setPrefetchRows()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getPrefetchRows(stmt: *mut dpiStmt, numRows: *mut u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns information about the column that is being queried.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getQueryInfo(
         stmt: *mut dpiStmt,
         pos: u32,
@@ -4399,6 +7830,18 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the value of the column at the given position for the currently
+    /// fetched row, without needing to provide a variable. If the data type of
+    /// the column needs to be overridden, the function
+    /// [`dpiStmt_defineValue()`] can be called to specify a different type
+    /// after executing the statement but before fetching any data.
+    /// 
+    /// This function should only be called after a call to the function
+    /// [`dpiStmt_fetch()`] has succeeded and indicated that a row is
+    /// available.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getQueryValue(
         stmt: *mut dpiStmt,
         pos: u32,
@@ -4407,9 +7850,22 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of rows affected by the last DML statement that was
+    /// executed, the number of rows currently fetched from a query, or the number
+    /// of successful executions of a PL/SQL block. In all other cases 0 is
+    /// returned.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getRowCount(stmt: *mut dpiStmt, count: *mut u64) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns an array of row counts affected by the last invocation of
+    /// [`dpiStmt_executeMany()`] with the array DML rowcounts mode enabled.
+    /// This feature is only available if both client and server are at 12.1.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getRowCounts(
         stmt: *mut dpiStmt,
         numRowCounts: *mut u32,
@@ -4417,13 +7873,34 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the id of the query that was just registered on the subscription
+    /// by calling [`dpiStmt_execute()`] on a statement prepared by calling
+    /// [`dpiSubscr_prepareStmt()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_getSubscrQueryId(stmt: *mut dpiStmt, queryId: *mut u64)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the array size used for performing fetches. All variables defined for
+    /// fetching must have this many (or more) elements allocated for them. The
+    /// higher this value is the less network round trips are required to fetch
+    /// rows from the database but more memory is also required. A value of zero
+    /// will reset the array size to the default value of
+    /// DPI_DEFAULT_FETCH_ARRAY_SIZE.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_setFetchArraySize(stmt: *mut dpiStmt, arraySize: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the value of an OCI attribute. This is intended solely for testing
+    /// attributes that are not otherwise supported by ODPI-C and should not be
+    /// used for any other purpose. Use only as directed by Oracle.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_setOciAttr(
         stmt: *mut dpiStmt,
         attribute: u32,
@@ -4432,15 +7909,44 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the number of rows that will be prefetched by the Oracle Client
+    /// library when a query is executed. The default value is
+    /// *DPI_DEFAULT_PREFETCH_ROWS* (2). Increasing this value may reduce the
+    /// number of round-trips to the database that are required in order to
+    /// fetch rows, but at the cost of increasing memory requirements. Setting this
+    /// value to 0 will disable prefetch completely, which may be useful when
+    /// the timing for fetching rows must be controlled by the caller.
+    /// 
+    /// The current value can be determined by calling
+    /// [`dpiStmt_getPrefetchRows()`].
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_setPrefetchRows(stmt: *mut dpiStmt, numRows: u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Excludes the associated SQL statement from the statement cache. If the
+    /// SQL statement was not already in the cache, it will not be added. This
+    /// function can be called before or after the statment is executed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiStmt_deleteFromCache(stmt: *mut dpiStmt) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the rowid. This is intended for situations where a
+    /// reference to the rowid needs to be maintained independently of the
+    /// reference returned when the rowid was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiRowid_addRef(rowid: *mut dpiRowid) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the sting (base64) representation of the rowid.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiRowid_getStringValue(
         rowid: *mut dpiRowid,
         value: *mut *const ::std::os::raw::c_char,
@@ -4448,12 +7954,31 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Releases a reference to the rowid. A count of the references to the rowid
+    /// is maintained and when this count reaches zero, the memory associated with
+    /// the rowid is freed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiRowid_release(subscr: *mut dpiRowid) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the subscription. This is intended for situations where
+    /// a reference to the subscription needs to be maintained independently of the
+    /// reference returned when the subscription was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSubscr_addRef(subscr: *mut dpiSubscr) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Prepares a statement for registration on the subscription. The statement is
+    /// then registered by calling the function [`dpiStmt_execute()`]. The
+    /// reference to the statement that is returned should be released as soon as
+    /// it is no longer needed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiSubscr_prepareStmt(
         subscr: *mut dpiSubscr,
         sql: *const ::std::os::raw::c_char,
@@ -4462,9 +7987,19 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the variable. This is intended for situations where a
+    /// reference to the variable needs to be maintained independently of the
+    /// reference returned when the variable was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_addRef(var: *mut dpiVar) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Copies the data from one variable to another variable.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_copyData(
         var: *mut dpiVar,
         pos: u32,
@@ -4473,12 +8008,28 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the number of elements in a PL/SQL index-by table if the variable
+    /// was created as an array by the function [`dpiConn_newVar()`]. If the
+    /// variable is one of the output bind variables of a DML returning statement,
+    /// however, the value returned will correspond to the number of rows returned
+    /// by the DML returning statement. In all other cases, the value returned will
+    /// be the number of elements the variable was created with.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_getNumElementsInArray(
         var: *mut dpiVar,
         numElements: *mut u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns a pointer to an array of [`dpiData`] structures used
+    /// for transferring data to and from the database. These structures are
+    /// allocated by the variable itself when a DML returning statement is executed
+    /// and the variable is bound.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_getReturnedData(
         var: *mut dpiVar,
         pos: u32,
@@ -4487,9 +8038,18 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns the size of the buffer used for one element of the array used for
+    /// fetching/binding Oracle data.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_getSizeInBytes(var: *mut dpiVar, sizeInBytes: *mut u32) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the variable value to the specified JSON value.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_setFromJson(
         var: *mut dpiVar,
         pos: u32,
@@ -4497,10 +8057,18 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the variable value to the specified LOB.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_setFromLob(var: *mut dpiVar, pos: u32, lob: *mut dpiLob)
         -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the variable value to the specified object.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_setFromObject(
         var: *mut dpiVar,
         pos: u32,
@@ -4508,6 +8076,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the variable value to the specified rowid.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_setFromRowid(
         var: *mut dpiVar,
         pos: u32,
@@ -4515,6 +8087,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the variable value to the specified statement.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_setFromStmt(
         var: *mut dpiVar,
         pos: u32,
@@ -4522,6 +8098,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the variable value to the specified vector value.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_setFromVector(
         var: *mut dpiVar,
         pos: u32,
@@ -4529,24 +8109,48 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the number of elements in a PL/SQL index-by table.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVar_setNumElementsInArray(
         var: *mut dpiVar,
         numElements: u32,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Adds a reference to the vector value. This is intended for situations where
+    /// a reference to the vector value needs to be maintained independently of the
+    /// reference returned when the vector value was created.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVector_addRef(vector: *mut dpiVector) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Returns information about the vector.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVector_getValue(
         vector: *mut dpiVector,
         info: *mut dpiVectorInfo,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Releases a reference to the vector value. A count of the references to the
+    /// vector value is maintained and when this count reaches zero, the memory
+    /// associated with the vector value is freed.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVector_release(vector: *mut dpiVector) -> ::std::os::raw::c_int;
 }
 extern "C" {
+
+    /// Sets the vector value from the supplied information.
+    /// 
+    /// The function returns DPI_SUCCESS for success and DPI_FAILURE for failure.
     pub fn dpiVector_setValue(
         vector: *mut dpiVector,
         info: *mut dpiVectorInfo,
