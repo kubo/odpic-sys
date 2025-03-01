@@ -8,7 +8,7 @@ Put this in your `Cargo.toml`:
 
 ```text
 [dependencies]
-odpic-sys = "0.1.1"
+odpic-sys = "0.2.0"
 ```
 
 The following Cargo features are supported:
@@ -32,9 +32,11 @@ See [`Compile-time Requirements`](https://docs.rs/cc/latest/cc/#compile-time-req
 
 | odpic-sys version | [ODPI-C version] | [RustTarget] | note |
 |-------|-------|------|---|
-| 0.2.0 |   -   |   -  | not yet published |
+| 0.2.0 | 5.5.0 | 1.59 | (*1) |
 | 0.1.1 | 5.4.1 | 1.59 |   |
 | 0.1.0 | 5.4.0 | 1.59 |   |
+
+*1: Some constants' types were changed from `u32` to appropriate ones.
 
 ## License
 
