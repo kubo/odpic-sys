@@ -953,6 +953,9 @@
     - name: DPI_VECTOR_FLAGS_FLEXIBLE_DIM
       desc: |
         The vector column uses a flexible number of dimensions.
+    - name: DPI_VECTOR_FLAGS_SPARSE
+      desc: |
+        The vector column contains sparse vectors
 
 - name: dpiVectorFormat
   kind: enum
@@ -10980,6 +10983,18 @@
           desc: |
             A pointer to the [`dpiData`] structure from which to
             get the value.
+    - name: dpiData_getVector
+      desc: |
+        Returns the value of the data when the native type is DPI_NATIVE_TYPE_VECTOR.
+      round_trips: No
+      return: dpiVector *
+      params:
+        - name: data
+          type: dpiData *
+          mode: IN
+          desc: |
+            A pointer to the [`dpiData`] structure from which to
+            get the value.
     - name: dpiData_setBool
       desc: |
         Sets the value of the data when the native type is DPI_NATIVE_TYPE_BOOLEAN.
@@ -12549,6 +12564,23 @@
         [`dpiVectorDimensionBuffer`] union for more
         information.
 
+        For dense vectors, the length of this array is defined by the
+        [`dpiVectorInfo.numDimensions`] member. For sparse vectors, the
+        length of this array is defined by the
+        [`dpiVectorInfo.numSparseValues`] member.
+    - name: numSparseValues
+      type: uint32_t
+      desc: |
+        Specifies the number of values that a sparse vector contains that are
+        non-zero. If this value is 0, the vector is considered a dense vector.
+    - name: sparseIndices
+      type: uint32_t *
+      desc: |
+        Specifies an array of sparse vector indices. Each element in this array is
+        the index of a non-zero value in the vector. The length of this array is
+        defined by the [`dpiVectorInfo.numSparseValues`] member. If the
+        vector is not a sparse vector, this value will be NULL.
+
 - name: dpiVersionInfo
   kind: struct
   desc: |
@@ -12696,7 +12728,7 @@
     - name: asJson
       type: dpiJson *
       desc: |
-        Value this is used when the native type that is being used is
+        Value that is used when the native type that is being used is
         DPI_NATIVE_TYPE_JSON. This is a reference to a JSON value which can be used
         for reading and writing the data that belongs to it.
     - name: asJsonObject
